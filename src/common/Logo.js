@@ -10,5 +10,6 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         width: 220,
         height: 100,
+        margin: 5
     }
 });

@@ -1,4 +1,6 @@
 const colors = {
+    primary: "",
+    secundary: "",
     text: '##E5E5E5',
     background: '#FFF',
     backgroundColor: '#373435',

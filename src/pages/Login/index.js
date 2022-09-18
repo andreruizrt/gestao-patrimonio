@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 
 import {
-  Alert,
+  View,
   Button,
+  Text,
   TextInput,
-  View
+  TouchableOpacity,
+  Alert,
 } from 'react-native';
 
 import Logo from '../../common/Logo';
@@ -50,6 +52,10 @@ export default class Login extends Component {
           style={styles.input}
           onPress={this.onLogin.bind(this)}
         />
+
+        <TouchableOpacity>
+          <Text>Esqueceu a senha?</Text>
+        </TouchableOpacity>
       </View>
     );
   }
