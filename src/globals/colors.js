@@ -1,10 +1,10 @@
 const colors = {
     primary: "",
     secundary: "",
-    text: '##E5E5E5',
+    text: '#E5E5E5',
     background: '#FFF',
-    backgroundColor: '#373435',
-    submitButton: "#000",
+    backgroundColor: 'white',
+    submitButton: "#373435",
     submitButtonText: 'white',
     success: 'green',
     warning: 'orange',
