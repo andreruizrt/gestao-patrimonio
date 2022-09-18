@@ -1,29 +1,21 @@
 import React, { useState, useEffect } from 'react';
-import databse from '../../config/firebaseconfig';
 
-import { View, Text } from 'react-native';
+import { View, Text, Button } from 'react-native';
 
 import Logo from '../../common/Logo';
 
 import styles from './style';
 
-export default function Home() {
-    const [task, setTask] = useState([]);
-
-    useEffect(() => {
-        databse.collection("Tasks").onSnapshot((query) => {
-            const list = []
-            query.forEach((doc) => {
-                list.push({ ...doc.data(), id: doc.id })
-            });
-            setTask(list);
-        })
-    }, [])
+export default function Home({ navigation }) {
 
     return (
         <View>
             <Logo />
             <Text>HomeScreen</Text>
+            <Button onPress={() => { navigation.navigate("Login") }} title="Login">
+            </Button>
+            <Button onPress={() => { navigation.navigate("Menu") }} title="Menu">
+            </Button>
         </View>
     );
 };
