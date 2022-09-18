@@ -7,7 +7,9 @@ import {
   TextInput,
   TouchableOpacity,
   Alert,
+  Image
 } from 'react-native';
+
 
 import Logo from '../../common/Logo';
 
@@ -25,37 +27,51 @@ export default class Login extends Component {
 
   onLogin() {
     const { username, password } = this.state;
-
     Alert.alert('Credentials', `${username} + ${password}`);
   }
 
   render() {
     return (
       <View style={styles.container}>
-        <Logo />
-        <TextInput
-          value={this.state.username}
-          onChangeText={(username) => this.setState({ username })}
-          placeholder={'Username'}
-          style={styles.input}
-        />
-        <TextInput
-          value={this.state.password}
-          onChangeText={(password) => this.setState({ password })}
-          placeholder={'Password'}
-          secureTextEntry={true}
-          style={styles.input}
-        />
 
-        <Button
-          title={'Login'}
-          style={styles.input}
-          onPress={this.onLogin.bind(this)}
-        />
+        <View style={styles.loginAndIconContainer}>
+          <View style={styles.iconAndText}>
+            <Text style={styles.loginText} >Login</Text>
+            <Image source={require('../../../assets/icons/User.png')} />
+          </View>
+        </View>
 
-        <TouchableOpacity>
+        <View style={styles.logoContainer}>
+          <Logo />
+        </View>
+
+        <View style={styles.loginContainer}>
+          <TextInput
+            value={this.state.username}
+            onChangeText={(username) => this.setState({ username })}
+            placeholder={'Insira seu email institucional'}
+            style={styles.input}
+          />
+          <TextInput
+            value={this.state.password}
+            onChangeText={(password) => this.setState({ password })}
+            placeholder={'Insira sua senha'}
+            secureTextEntry={true}
+            style={styles.input}
+          />
+
+          <TouchableOpacity
+            style={styles.button}
+            onPress={this.onLogin.bind(this)}
+          >
+            <Text style={styles.buttonText}>Login</Text>
+          </TouchableOpacity>
+        </View>
+
+        <TouchableOpacity style={{flex: 4}}>
           <Text>Esqueceu a senha?</Text>
         </TouchableOpacity>
+
       </View>
     );
   }
