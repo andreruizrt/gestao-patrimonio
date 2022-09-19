@@ -14,6 +14,7 @@ import AtualizarPatrimonio from './src/pages/AtualizarPatrimonio'
 import GerarRelatorio from './src/pages/GerarRelatorio'
 import BancoDeDados from './src/pages/BancoDeDados'
 import RecuperarSenha from './src/pages/RecuperarSenha';
+import Splash from './src/pages/Splash';
 
 const Stack = createNativeStackNavigator();
 
@@ -50,6 +51,7 @@ export default function App() {
     <NavigationContainer>
       <Stack.Navigator>
         <Stack.Screen name='Home' component={Home} />
+        <Stack.Screen name='Splash' component={Splash} />
         <Stack.Screen name='Login' component={Login} />
         <Stack.Screen name='RecuperarSenha' component={RecuperarSenha} />
         <Stack.Screen name='Menu' component={Menu} />
