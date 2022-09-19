@@ -1,16 +1,21 @@
 import React, { Component } from 'react';
-import { View, Text } from 'react-native';
+import { View, TouchableOpacity } from 'react-native';
 
 import Logo from '../../common/Logo';
 
-export default class Home extends Component {
+import styles from './style';
 
-    render() {
-        return (
-            <View style={styles.container}>
+export default function Splash({ navigation }) {
+
+    return (
+        <View style={styles.container}>
+            <TouchableOpacity
+                onPress={() => { navigation.navigate("Home") }}
+            >
                 <Logo />
-            </View>
-        );
-    }
+            </TouchableOpacity>
+        </View>
+    );
 }
+
 
