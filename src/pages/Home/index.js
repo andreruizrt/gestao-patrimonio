@@ -12,6 +12,10 @@ import styles from './style';
 
 const PAGES = [
     {
+        name: 'Splash',
+        title: 'Splash'
+    },
+    {
         name: 'Login',
         title: 'Login'
     },
