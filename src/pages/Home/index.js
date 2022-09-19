@@ -20,6 +20,10 @@ const PAGES = [
         title: 'Login'
     },
     {
+        name: 'Menu',
+        title: 'Menu'
+    },
+    {
         name: 'RecuperarSenha',
         title: 'Recuperar Senha'
     },
@@ -50,7 +54,7 @@ export default function Home({ navigation }) {
 
     return (
         <View style={styles.container}>
-            <View style={{ height: "10%"}}>
+            <View style={{ height: "10%" }}>
                 <Text style={{ top: 20, fontWeight: "bold" }}>Todas as páginas:</Text>
             </View>
 
