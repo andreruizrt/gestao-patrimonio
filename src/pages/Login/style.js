@@ -13,12 +13,22 @@ const styles = StyleSheet.create({
     flexWrap: "wrap",
     flexDirection: "row",
     alignSelf: "stretch",
+    position: "relative",
+    top: 70,
+    left: 30,
+    marginBottom: 40,
   },
   logoContainer: {
     flex: 2,
+    margin: 40,
   },
   loginContainer: {
     flex: 3,
+    margin: 10,
+  },
+  iconAndText: {
+    width: 70,
+    flexDirection: "row",
   },
   input: {
     width: 260,
@@ -41,16 +51,17 @@ const styles = StyleSheet.create({
     textAlign: "center",
     textAlignVertical: "center"
   },
-  iconAndText: {
-    width: 70,
-    flexDirection: "row",
-    position: "relative",
-    top: 20,
-    borderWidth: 2,
-  },
   loginText: {
     fontSize: 18,
-    fontWeight: "0.7",
+    fontWeight: "bold",
+  },
+  recuperarSenha: {
+    flex: 4,
+    margin: 40,
+    position: "relative",
+    top: 40,
+    left: 80,
+    textDecorationLine: "underline"
   }
 });
 

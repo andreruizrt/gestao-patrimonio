@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 
 import {
   View,
-  Button,
   Text,
   TextInput,
   TouchableOpacity,
@@ -26,6 +25,7 @@ export default class Login extends Component {
   }
 
   onLogin() {
+    {/* TODO: chamar navigation aqui, para executar o login */ }
     const { username, password } = this.state;
     Alert.alert('Credentials', `${username} + ${password}`);
   }
@@ -68,7 +68,8 @@ export default class Login extends Component {
           </TouchableOpacity>
         </View>
 
-        <TouchableOpacity style={{flex: 4}}>
+        {/* TODO: chamar navigation aqui, para ir para página de recuperar senha */}
+        <TouchableOpacity style={styles.recuperarSenha}>
           <Text>Esqueceu a senha?</Text>
         </TouchableOpacity>
 
