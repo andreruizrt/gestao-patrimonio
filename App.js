@@ -15,12 +15,13 @@ import GerarRelatorio from './src/pages/GerarRelatorio'
 import BancoDeDados from './src/pages/BancoDeDados'
 import RecuperarSenha from './src/pages/RecuperarSenha';
 import Splash from './src/pages/Splash';
+import './src/config/firebase'
 
 const Stack = createNativeStackNavigator();
 
 export default function App() {
   // const [initializing, setInitializing] = useState(true);
-  const [user, setUser] = useState(true);
+  const [user, setUser] = useState(false);
 
   // function onAuthStateChanged(user) {
   //   setUser(user);

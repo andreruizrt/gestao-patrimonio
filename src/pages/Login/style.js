@@ -42,7 +42,7 @@ const styles = StyleSheet.create({
     height: 36,
     marginTop: 20,
     backgroundColor: colors.submitButton,
-    borderRadius: "10px"
+    borderRadius: 10
   },
   buttonText: {
     flex: 1,
