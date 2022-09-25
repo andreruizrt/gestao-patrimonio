@@ -43,7 +43,7 @@ export default function App() {
   if (!user) {
     return (
       <>
-        <Login />
+        <Login setUser={setUser} />
       </>
     )
   }
@@ -51,11 +51,11 @@ export default function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator>
+        <Stack.Screen name='Menu' component={Menu} />
         <Stack.Screen name='Home' component={Home} />
         <Stack.Screen name='Splash' component={Splash} />
         <Stack.Screen name='Login' component={Login} />
-        <Stack.Screen name='RecuperarSenha' component={RecuperarSenha} />
-        <Stack.Screen name='Menu' component={Menu} />
+        <Stack.Screen name='RecuperarSenha' component={RecuperarSenha} />       
         <Stack.Screen name='CadastrarColaborador' component={CadastrarColaborador} />
         <Stack.Screen name='CadastrarPatrimonio' component={CadastrarPatrimonio} />
         <Stack.Screen name='AtualizarPatrimonio' component={AtualizarPatrimonio} />
