@@ -27,13 +27,13 @@ export default class Login extends Component {
   async onLogin () {
     {/* TODO: chamar navigation aqui, para executar o login */ }
     const { username, password } = this.state;
-    const {navigation} = this.props;
+    const { setUser } = this.props;
     const auth = getAuth();
     await signInWithEmailAndPassword(auth, username, password)
     .then((userCredential) => {
       // Signed in
       const user = userCredential.user;
-      navigation.navigate('Home');
+      setUser(user);
       // ...
     })
     .catch((error) => {
