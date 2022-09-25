@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, useState } from 'react';
 
 import {
   View,
@@ -9,10 +9,10 @@ import {
   Image
 } from 'react-native';
 
-
 import Logo from '../../common/Logo';
 
 import styles from './style';
+import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 
 export default class Login extends Component {
   constructor(props) {
@@ -24,9 +24,25 @@ export default class Login extends Component {
     };
   }
 
-  onLogin() {
+  async onLogin () {
     {/* TODO: chamar navigation aqui, para executar o login */ }
     const { username, password } = this.state;
+    const {navigation} = this.props;
+    const auth = getAuth();
+    await signInWithEmailAndPassword(auth, username, password)
+    .then((userCredential) => {
+      // Signed in
+      const user = userCredential.user;
+      navigation.navigate('Home');
+      // ...
+    })
+    .catch((error) => {
+      const errorCode = error.code;
+      const errorMessage = error.message;
+      console.error(errorCode);
+      console.log('ERRO');
+      console.error(errorMessage);
+    });
     Alert.alert('Credentials', `${username} + ${password}`);
   }
 
@@ -77,5 +93,3 @@ export default class Login extends Component {
     );
   }
 }
-
-
