@@ -8,6 +8,22 @@ import styles from './style';
 
 export default function CadatrarColaborador() {
 
+    const [nome, setNome] = useState("");
+    const [email, setEmail] = useState("");
+    const [registro, setRegistro] = useState("");
+    const [dataAdmissao, setdataAdmissao] = useState("");
+
+    // function onSubmit(userId, nome, email, registro, data_admissao) {
+    //     const database = getDatabase();
+    //     set(ref(database, 'usuario/' + userId), {
+    //         nome_usuario: nome,
+    //         email_usuario: email,
+    //         registro_usuario: registro,
+    //         dt_admissao_usuario: data_admissao
+    //     });
+    // }
+
+
     return (
         <View>
             <Logo />
