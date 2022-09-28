@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { View, Text, TextInput, Button } from 'react-native';
 
 import Logo from '../../common/Logo';
+import Arrow from '../../components/Arrow';
 
 import styles from './style';
 
@@ -23,32 +24,86 @@ export default function CadatrarColaborador() {
     //     });
     // }
 
-
+    // TODO: Criação paginação e navegação entre páginas de cadastro
     return (
         <View>
             <Logo />
             <Text>Cadatrar Colaborador</Text>
 
+            {/* Página 1 */}
             <TextInput
-                label={'Nome do colaborador:'}
-                placeholder={'Digite o nome do colaborador'}
+                style={styles.textInput}
+                label={'Nome do colaborador'}
                 onChangeText={text => setNome(text)}
             />
 
             <TextInput
-                label={'Email do colaborador:'}
-                placeholder={'Digite seu email'}
+                style={styles.textInput}
+                label={'Email do colaborador'}
                 onChangeText={text => setEmail(text)}
             />
             <TextInput
-                label={'Registro:'}
-                placeholder={'Digite seu registro'}
+                style={styles.textInput}
+                label={'Registro'}
                 onChangeText={text => setRegistro(text)}
             />
 
             <TextInput
-                label={'Data de admissão:'}
-                placeholder={'Digite sua data de admissão'}
+                style={styles.textInput}
+                label={'Data admissão'}
+                onChangeText={text => setdataAdmissao(text)}
+            />
+
+            <View style={{ flex: 1, alignItems:"center", flexDirection: "row", justifyContent: "space-between" }}>
+                <Arrow
+                    onPress={() => console.log("testando flechas")}
+                    direction={"left"}
+                />
+                <Arrow
+                    onPress={() => console.log("testando flechas")}
+                    direction={"right"}
+                />
+            </View>
+
+            {/* Página 2 */}
+            <TextInput
+                style={styles.textInput}
+                label={'ID'}
+                editable={false}
+                onChangeText={text => setNome(text)}
+            />
+
+            <TextInput
+                label={'EG patrimônio'}
+                onChangeText={text => setEmail(text)}
+            />
+            <TextInput
+                label={'Descrição do patrimônio'}
+                onChangeText={text => setRegistro(text)}
+            />
+
+            <TextInput
+                label={'Marca'}
+                onChangeText={text => setdataAdmissao(text)}
+            />
+
+            <TextInput
+                label={'Modelo'}
+                onChangeText={text => setdataAdmissao(text)}
+            />
+
+            <TextInput
+                label={'N° de série'}
+                onChangeText={text => setdataAdmissao(text)}
+            />
+
+            <TextInput
+                label={'setor'}
+                onChangeText={text => setdataAdmissao(text)}
+            />
+
+            <TextInput
+                label={'Observação'}
                 onChangeText={text => setdataAdmissao(text)}
             />
 
@@ -58,4 +113,3 @@ export default function CadatrarColaborador() {
         </View >
     );
 };
-
