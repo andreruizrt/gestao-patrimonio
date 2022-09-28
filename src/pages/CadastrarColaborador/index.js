@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
-import { View, Text, TextInput, Button } from 'react-native';
-
+import { View, Text, Button } from 'react-native';
+import { TextInput } from 'react-native-paper';
 import Logo from '../../common/Logo';
 import Arrow from '../../components/Arrow';
 
@@ -34,22 +34,24 @@ export default function CadatrarColaborador() {
             <TextInput
                 style={styles.textInput}
                 label={'Nome do colaborador'}
+                value={nome}
                 onChangeText={text => setNome(text)}
             />
 
             <TextInput
-                style={styles.textInput}
-                label={'Email do colaborador'}
+                label={'Email do colaborador:'}
+                value={email}
                 onChangeText={text => setEmail(text)}
             />
             <TextInput
-                style={styles.textInput}
-                label={'Registro'}
+                label={'Registro:'}
+                value={registro}
                 onChangeText={text => setRegistro(text)}
             />
 
             <TextInput
                 style={styles.textInput}
+                value={dataAdmissao}
                 label={'Data admissão'}
                 onChangeText={text => setdataAdmissao(text)}
             />
