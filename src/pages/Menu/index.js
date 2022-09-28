@@ -1,15 +1,14 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 
 import {
     View,
     Text,
-    Image,
     FlatList,
-    TouchableOpacity,
     SafeAreaView
 } from 'react-native';
 
 import Logo from '../../common/Logo';
+import Item from '../../components/Item';
 
 import styles from '../Menu/style';
 
@@ -40,16 +39,6 @@ const MENU_OPTIONS = [
         page: "BancoDeDados"
     },
 ]
-
-
-const Item = ({ item, onPress, backgroundColor, textColor }) => (
-    <TouchableOpacity onPress={onPress} style={[styles.item, backgroundColor]}>
-        <View style={styles.menuItemContainer}>
-            <Image source={item.icon} />
-        </View>
-        <Text style={[styles.title, textColor]}>{item.key}</Text>
-    </TouchableOpacity>
-);
 
 
 export default function Menu({ navigation }) {
