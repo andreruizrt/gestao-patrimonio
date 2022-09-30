@@ -3,7 +3,9 @@ import React, { useState } from 'react';
 import { View, Text, Button} from 'react-native';
 
 import Logo from '../../common/Logo';
-import { TextInput } from 'react-native-paper';
+
+import Input from '../../components/Input';
+import Arrow from '../../components/Arrow';
 
 export default function AtualizarPatrimonio() {
     const [id,setId] = useState('');
