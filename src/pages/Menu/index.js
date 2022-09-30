@@ -4,7 +4,8 @@ import {
     View,
     Text,
     FlatList,
-    SafeAreaView
+    SafeAreaView,
+    ScrollView
 } from 'react-native';
 
 import Logo from '../../common/Logo';
@@ -74,15 +75,14 @@ export default function Menu({ navigation }) {
                 <Text>O que gostaria de fazer hoje?</Text>
             </View>
 
-
-            <SafeAreaView style={styles.menuItens}>
+            <ScrollView  horizontal={true}>
                 <FlatList
                     data={MENU_OPTIONS}
                     renderItem={renderItem}
                     keyExtractor={(item) => item.key}
                     extraData={selectedId}
                 />
-            </SafeAreaView>
+            </ScrollView>
 
 
             <View style={{ flex: 3 }}>
