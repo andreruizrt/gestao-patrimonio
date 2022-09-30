@@ -12,11 +12,10 @@ export default function AtualizarPatrimonio() {
     const [dataCompra,setDataCompra] = useState('');
     const [garantia,setGarantia] = useState('');
     const [valor,setValor] = useState('');
-    const [numNota,setNumNota] = useState('');
-    const [numSerie,setNumSerie] = useState('');
-    const [setor,setSetor] = useState('');
+    const [numNota, setNumNota] = useState('');
+    const [numSerie, setNumSerie] = useState('');
     const [marca, setMarca] = useState('');
-    const [modelo,setModelo] = useState('');
+    const [modelo, setModelo] = useState('');
     return (
         <View>
             <Logo />
