@@ -1,9 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 
-import { View, Text, Button } from 'react-native';
-import { TextInput } from 'react-native-paper';
+import { View, Text, ScrollView } from 'react-native';
+
 import Logo from '../../common/Logo';
 import Arrow from '../../components/Arrow';
+import Input from '../../components/Input';
 
 import styles from './style';
 
@@ -25,93 +26,74 @@ export default function CadatrarColaborador() {
     // }
 
     // TODO: Criação paginação e navegação entre páginas de cadastro
+
     return (
-        <View>
-            <Logo />
-            <Text>Cadatrar Colaborador</Text>
+        <View style={{ flex: 1 }}>
+            <View style={{
+                flex: 1,
+                margin: 15,
+                borderRadius: 10,
+                backgroundColor: "white",
+                alignItems: "center"
+            }}>
+                <View>
+                    <Input
+                        label={'Nome do colaborador'}
+                        width={282}
+                        value={nome}
+                        onChangeText={text => setNome(text)}
+                    />
+                </View>
+                <View>
+                    <Input
+                        label={'Email do colaborador:'}
+                        width={282}
+                        value={email}
+                        onChangeText={text => setEmail(text)}
+                    />
+                </View>
+                <View style={{ flex: 1, flexDirection: "row", alignContent: "space-between" }}>
+                    <Input
+                        label={'Registro:'}
+                        width={130}
+                        value={registro}
+                        onChangeText={text => setRegistro(text)}
+                    />
+                    <Input
+                        value={dataAdmissao}
+                        width={130}
+                        label={'Data admissão'}
+                        onChangeText={text => setdataAdmissao(text)}
+                    />
+                </View>
 
-            {/* Página 1 */}
-            <TextInput
-                style={styles.textInput}
-                label={'Nome do colaborador'}
-                value={nome}
-                onChangeText={text => setNome(text)}
-            />
-
-            <TextInput
-                label={'Email do colaborador:'}
-                value={email}
-                onChangeText={text => setEmail(text)}
-            />
-            <TextInput
-                label={'Registro:'}
-                value={registro}
-                onChangeText={text => setRegistro(text)}
-            />
-
-            <TextInput
-                style={styles.textInput}
-                value={dataAdmissao}
-                label={'Data admissão'}
-                onChangeText={text => setdataAdmissao(text)}
-            />
-
-            <View style={{ flex: 1, alignItems:"center", flexDirection: "row", justifyContent: "space-between" }}>
-                <Arrow
-                    onPress={() => console.log("testando flechas")}
-                    direction={"left"}
-                />
-                <Arrow
-                    onPress={() => console.log("testando flechas")}
-                    direction={"right"}
-                />
+                <View style={{
+                    marginHorizontal: 10,
+                    marginTop: 110,
+                    paddingTop: 30,
+                    flex: 1,
+                    flexDirection: "row",
+                    alignItems: "center",
+                    justifyContent: "space-between",
+                    borderTopWidth: 1,
+                    borderColor: "#F5EFEB",
+                    backgroundColor: "white"
+                }}>
+                    <Arrow
+                        onPress={() => console.log("Clicou no voltar")}
+                        direction={"left"}
+                    />
+                    <Arrow
+                        onPress={() => console.log("Clicou no voltar")}
+                        direction={"right"}
+                    />
+                </View>
+            </View >
+            
+            <View style={{ margin: 8, alignItems: "center" }}>
+                <Logo width={146} />
             </View>
 
-            {/* Página 2 */}
-            <TextInput
-                style={styles.textInput}
-                label={'ID'}
-                editable={false}
-                onChangeText={text => setNome(text)}
-            />
-
-            <TextInput
-                label={'EG patrimônio'}
-                onChangeText={text => setEmail(text)}
-            />
-            <TextInput
-                label={'Descrição do patrimônio'}
-                onChangeText={text => setRegistro(text)}
-            />
-
-            <TextInput
-                label={'Marca'}
-                onChangeText={text => setdataAdmissao(text)}
-            />
-
-            <TextInput
-                label={'Modelo'}
-                onChangeText={text => setdataAdmissao(text)}
-            />
-
-            <TextInput
-                label={'N° de série'}
-                onChangeText={text => setdataAdmissao(text)}
-            />
-
-            <TextInput
-                label={'setor'}
-                onChangeText={text => setdataAdmissao(text)}
-            />
-
-            <TextInput
-                label={'Observação'}
-                onChangeText={text => setdataAdmissao(text)}
-            />
-
-            <Button onPress={() => console.log("clicou")} title={"Continuar"}>
-            </Button>
-
-        </View >
+        </View>
     );
 };

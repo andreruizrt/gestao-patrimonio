@@ -1,96 +1,145 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 
-import { View, Text, Button} from 'react-native';
+import {
+    View,
+    ScrollView
+} from 'react-native';
 
 import Logo from '../../common/Logo';
-import { TextInput } from 'react-native-paper';
+import Arrow from '../../components/Arrow';
+import Input from '../../components/Input';
+
 import styles from './style';
 
 export default function CadastrarPatrimonio() {
-    const [id,setId] = useState('');
-    const [eg,setEg] = useState('');
-    const [desc,setDesc] = useState('');
-    const [dataCompra,setDataCompra] = useState('');
-    const [garantia,setGarantia] = useState('');
-    const [valor,setValor] = useState('');
-    const [numNota,setNumNota] = useState('');
-    const [numSerie,setNumSerie] = useState('');
-    const [setor,setSetor] = useState('');
+
+    const [id, setId] = useState('');
+    const [eg, setEg] = useState('');
+    const [desc, setDesc] = useState('');
+    const [dataCompra, setDataCompra] = useState('');
+    const [garantia, setGarantia] = useState('');
+    const [valor, setValor] = useState('');
+    const [numNota, setNumNota] = useState('');
+    const [numSerie, setNumSerie] = useState('');
     const [marca, setMarca] = useState('');
-    const [modelo,setModelo] = useState('');
+    const [modelo, setModelo] = useState('');
+
     return (
-        <View>
-            <Logo />
-            <Text>Cadatrar Património</Text>
-            <View >
-                <TextInput
-                    label={'Id:'}
-                    value={id}
-                    disabled={true}
-                    onChangeText={text => setId(text)}
-                />
-                <TextInput
-                    label={'EG Património:'}
-                    value={eg}
-                    onChangeText={text => setEg(text)}
-                />               
-            </View>
+        <View style={{ flex: 1 }}>
+            <View style={{
+                flex: 1,
+                margin: 15,
+                borderRadius: 10,
+                backgroundColor: "white",
+                alignItems: "center"
+            }}>
+                <ScrollView showsVerticalScrollIndicator={false}>
+                    <View style={{ flex: 1, flexDirection: "row", alignContent: "space-between" }}>
+                        <Input
+                            label={'ID'}
+                            width={130}
+                            value={id}
+                            disabled={true}
+                            onChangeText={text => setId(text)}
+                        />
+                        <Input
+                            label={'EG Patrimônio'}
+                            width={130}
+                            value={eg}
+                            onChangeText={text => setEg(text)}
+                        />
+                    </View>
 
-            <View >
-                <TextInput
-                    label={'Descrição do patrimônio:'}
-                    value={desc}
-                    onChangeText={text => setDesc(text)}
-                />              
-            </View>
+                    <View >
+                        <Input
+                            label={'Descrição do patrimônio'}
+                            width={292}
+                            value={desc}
+                            onChangeText={text => setDesc(text)}
+                        />
+                    </View>
 
-            <View>
-                <TextInput
-                    label={'Data de compra:'}
-                    value={dataCompra}
-                    onChangeText={text => setDataCompra(text)}
-                />
-                <TextInput
-                    label={'Garantia:'}
-                    value={garantia}
-                    onChangeText={text => setGarantia(text)}
-                />               
-            </View>
+                    <View style={{ flex: 1, flexDirection: "row", alignContent: "space-between" }}>
+                        <Input
+                            label={'Data de compra'}
+                            width={130}
+                            value={dataCompra}
+                            onChangeText={text => setDataCompra(text)}
+                        />
+                        <Input
+                            label={'Garantia'}
+                            width={130}
+                            value={garantia}
+                            onChangeText={text => setGarantia(text)}
+                        />
+                    </View>
 
-            <View >
-                <TextInput
-                    label={'Valor:'}
-                    value={valor}
-                    onChangeText={text => setValor(text)}
-                />
-                <TextInput
-                    label={'Nª da Nota:'}
-                    value={numNota}
-                    onChangeText={text => setNumNota(text)}
-                />               
-            </View>
-            <View >
-                <TextInput
-                        label={'Marca:'}
-                        value={marca}
-                        onChangeText={text => setMarca(text)}
-                    />
-                <TextInput
-                    label={'Nª de Serie:'}
-                    value={numSerie}
-                    onChangeText={text => setNumSerie(text)}
-                />           
-            </View>
-            <View >
-                <TextInput
-                        label={'Modelo:'}
-                        value={modelo}
-                        onChangeText={text => setModelo(text)}
-                    />        
-            </View>
-            <Button onPress={() => console.log("clicou")} title={"Continuar"}>
-            </Button>
+                    <View style={{ flex: 1, flexDirection: "row", alignContent: "space-between" }}>
+                        <Input
+                            label={'Valor'}
+                            width={130}
+                            value={valor}
+                            onChangeText={text => setValor(text)}
+                        />
+                        <Input
+                            label={'Nª da Nota'}
+                            width={130}
+                            value={numNota}
+                            onChangeText={text => setNumNota(text)}
+                        />
+                    </View>
 
+                    <View style={{ flex: 1, flexDirection: "row", alignContent: "space-between" }}>
+                        <Input
+                            label={'Marca'}
+                            width={130}
+                            value={marca}
+                            onChangeText={text => setMarca(text)}
+                        />
+                        <Input
+                            label={'Nª de Serie'}
+                            width={130}
+                            value={numSerie}
+                            onChangeText={text => setNumSerie(text)}
+                        />
+                    </View>
+                    
+                    <View >
+                        <Input
+                            label={'Modelo'}
+                            width={292}
+                            value={modelo}
+                            onChangeText={text => setModelo(text)}
+                        />
+                    </View>
+
+                    <View style={{
+                        marginHorizontal: 10,
+                        paddingTop: 30,
+                        flex: 1,
+                        flexDirection: "row",
+                        alignItems: "center",
+                        justifyContent: "space-between",
+                        borderTopWidth: 1,
+                        borderColor: "#F5EFEB",
+                        backgroundColor: "white"
+                    }}>
+                        <Arrow
+                            onPress={() => console.log("Clicou no voltar")}
+                            direction={"left"}
+                        />
+                        <Arrow
+                            onPress={() => console.log("Clicou no voltar")}
+                            direction={"right"}
+                        />
+                    </View>
+
+                </ScrollView>
+            </View >
+
+            <View style={{ margin: 8, alignItems: "center" }}>
+                <Logo width={146} />
+            </View>
         </View >
     );
 };
