@@ -1,15 +1,13 @@
 import { StyleSheet, Image } from 'react-native';
 
-export default function Logo() {
-    return <Image style={styles.logo} source={require('../../assets/logo/logo-utfpr.png')}/>;
+export default function Logo({ width = 220 }) {
+    return <Image style={[styles.logo, { width: width, height: (width - 20) / 2 }]}  source={require('../../assets/logo/logo-utfpr.png')}/>;
 }
 
 const styles = StyleSheet.create({
     logo: {
         justifyContent: 'center',
         alignItems: 'center',
-        width: 220,
-        height: 100,
         margin: 5
     }
 });
