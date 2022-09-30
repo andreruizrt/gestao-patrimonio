@@ -10,6 +10,8 @@ npm-debug.*
 *.orig.*
 web-build/
 *.log
+*.lock
+metro.config.js
 
 # macOS
 .DS_Store
