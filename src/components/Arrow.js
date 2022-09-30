@@ -35,6 +35,7 @@ const styles = StyleSheet.create({
     menuItemContainer: {
         width: 80,
         height: 60,
+        backgroundColor: colors.backgroundColor,
         marginHorizontal: 5,
         alignSelf: "center",
         justifyContent: "center",
