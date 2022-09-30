@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-import { View, Text, ScrollView } from 'react-native';
+import { View } from 'react-native';
 
 import Logo from '../../common/Logo';
 import Arrow from '../../components/Arrow';
