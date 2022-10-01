@@ -1,71 +1,20 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 import {
     View,
     Text,
-    FlatList,
-    SafeAreaView,
-    ScrollView
 } from 'react-native';
 
+import Slider from '../../components/Slider';
 import Logo from '../../common/Logo';
-import Item from '../../components/Item';
 
 import styles from '../Menu/style';
 
-const MENU_OPTIONS = [
-    {
-        key: "Cadastrar Colaborador",
-        icon: require("../../../assets/icons/icon_user_plus.png"),
-        page: "CadastrarColaborador"
-    },
-    {
-        key: "Cadastrar Patrimônio",
-        icon: require("../../../assets/icons/icon_carrinho.png"),
-        page: "CadastrarPatrimonio"
-    },
-    {
-        key: "Atualizar Patrimônio",
-        icon: require("../../../assets/icons/icon_flecha.png"),
-        page: "AtualizarPatrimonio"
-    },
-    {
-        key: "Gerar Relatório",
-        icon: require("../../../assets/icons/icon_relatorio.png"),
-        page: "GerarRelatorio"
-    },
-    {
-        key: "Banco de dados",
-        icon: require("../../../assets/icons/icon_database.png"),
-        page: "BancoDeDados"
-    },
-]
-
-
 export default function Menu({ navigation }) {
-    const [selectedId, setSelectedId] = useState(null);
-
-    const renderItem = ({ item }) => {
-        const backgroundColor = item.key === selectedId ? "#CCC" : "#FFF";
-        const color = item.key === selectedId ? 'white' : 'black';
-
-        return (
-            <Item
-                item={item}
-                onPress={() => {
-                    setSelectedId(item.key)
-                    navigation.navigate(item.page)
-                }}
-                backgroundColor={{ backgroundColor }}
-                textColor={{ color }}
-            />
-        );
-    };
 
     return (
         <View style={styles.container}>
-
-            <View style={{ flex: 1 }}>
+            <View style={styles.profileContainer}>
                 {/* <HamburgerMenu /> */}
                 {/* <MenuLateral /> */}
                 {/* <Avatar /> */}
@@ -75,18 +24,12 @@ export default function Menu({ navigation }) {
                 <Text>O que gostaria de fazer hoje?</Text>
             </View>
 
-            <ScrollView  horizontal={true}>
-                <FlatList
-                    data={MENU_OPTIONS}
-                    renderItem={renderItem}
-                    keyExtractor={(item) => item.key}
-                    extraData={selectedId}
-                />
-            </ScrollView>
+            <View>
+                <Slider />
+            </View>
 
-
-            <View style={{ flex: 3 }}>
-                <Logo />
+            <View>
+                <Logo width={146} />
             </View>
 
         </View>
