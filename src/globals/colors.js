@@ -1,7 +1,8 @@
 const colors = {
     primary: "",
-    secundary: "",
+    secundary: "#FECC00",
     text: '#E5E5E5',
+    header: "linear-gradient(360deg, #1A171B 0%, #171F52 100%)",
     background: '#FFF',
     backgroundColor: 'white',
     borderColor: 'white',
