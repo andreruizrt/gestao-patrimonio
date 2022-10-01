@@ -16,12 +16,15 @@ import BancoDeDados from './src/pages/BancoDeDados'
 import RecuperarSenha from './src/pages/RecuperarSenha';
 import Splash from './src/pages/Splash';
 import './src/config/firebase'
+import Slider from './src/components/Slider';
+import { StatusBar } from 'expo-status-bar';
+import { colors } from './src/globals';
 
 const Stack = createNativeStackNavigator();
 
 export default function App() {
   // const [initializing, setInitializing] = useState(true);
-  const [user, setUser] = useState(false);
+  const [user, setUser] = useState(true);
 
   // function onAuthStateChanged(user) {
   //   setUser(user);
@@ -49,19 +52,32 @@ export default function App() {
   }
 
   return (
-    <NavigationContainer>
-      <Stack.Navigator>
-        <Stack.Screen name='Menu' component={Menu} />
-        <Stack.Screen name='Home' component={Home} />
-        <Stack.Screen name='Splash' component={Splash} />
-        <Stack.Screen name='Login' component={Login} />
-        <Stack.Screen name='RecuperarSenha' component={RecuperarSenha} />       
-        <Stack.Screen name='CadastrarColaborador' component={CadastrarColaborador} />
-        <Stack.Screen name='CadastrarPatrimonio' component={CadastrarPatrimonio} />
-        <Stack.Screen name='AtualizarPatrimonio' component={AtualizarPatrimonio} />
-        <Stack.Screen name='GerarRelatorio' component={GerarRelatorio} />
-        <Stack.Screen name='BancoDeDados' component={BancoDeDados} />
-      </Stack.Navigator>
-    </NavigationContainer>
+    <>
+      <StatusBar />
+      <NavigationContainer
+      >
+        <Stack.Navigator>
+          {/* <Stack.Screen name='Slider' component={Slider} /> */}
+          <Stack.Screen
+            name='Home'
+            component={Home}
+            options={{
+              headerStyle: {
+                backgroundColor: colors.header
+              }
+            }}
+          />
+          <Stack.Screen name='Menu' component={Menu} />
+          <Stack.Screen name='Splash' component={Splash} />
+          <Stack.Screen name='Login' component={Login} />
+          <Stack.Screen name='RecuperarSenha' component={RecuperarSenha} />
+          <Stack.Screen name='CadastrarColaborador' component={CadastrarColaborador} />
+          <Stack.Screen name='CadastrarPatrimonio' component={CadastrarPatrimonio} />
+          <Stack.Screen name='AtualizarPatrimonio' component={AtualizarPatrimonio} />
+          <Stack.Screen name='GerarRelatorio' component={GerarRelatorio} />
+          <Stack.Screen name='BancoDeDados' component={BancoDeDados} />
+        </Stack.Navigator>
+      </NavigationContainer>
+    </>
   );
 }
