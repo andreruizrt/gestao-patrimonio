@@ -1,7 +1,6 @@
 import React from 'react';
 import {
     View,
-    Text,
     StyleSheet,
     TouchableOpacity,
     Image
@@ -9,23 +8,12 @@ import {
 
 import { colors } from '../globals';
 
-const ARROW_COLOR_ICON = [
-    {
-        color: "red",
-        icon: require("../../assets/icons/icon_angle_left.png")
-    },
-    {
-        color: "green",
-        icon: require("../../assets/icons/icon_angle_right.png")
-    }
-];
-
 export default function Arrow({ onPress, direction }) {
 
     return (
         <TouchableOpacity onPress={onPress} style={styles.item}>
-            <View style={[styles.menuItemContainer, { borderColor: direction == "left" ? ARROW_COLOR_ICON.at(0).color : ARROW_COLOR_ICON.at(1).color }]}>
-                <Image source={direction == "left" ? ARROW_COLOR_ICON.at(0).icon : ARROW_COLOR_ICON.at(1).icon} />
+            <View style={[styles.menuItemContainer, { borderColor: direction == "left" ? "red" : "green" }]}>
+                <Image source={direction == "left" ?  require("../../assets/icons/icon_angle_left.png") : require("../../assets/icons/icon_angle_right.png")} />
             </View>
         </TouchableOpacity>
     );
