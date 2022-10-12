@@ -38,4 +38,4 @@ const app = initializeApp(firebaseConfig);
 
 const analytics = getAnalytics(app);
 
-export default {app,analytics};
+export default { app, analytics };
