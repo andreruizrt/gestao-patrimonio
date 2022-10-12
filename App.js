@@ -3,22 +3,24 @@ import {
   NavigationContainer
 } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { StatusBar } from 'expo-status-bar';
 
-import Home from './src/pages/Home';
+
+import Splash from './src/pages/Splash';
 import Login from './src/pages/Login';
+import Home from './src/pages/Home';
 import Menu from './src/pages/Menu';
 
 import CadastrarColaborador from './src/pages/CadastrarColaborador'
 import CadastrarPatrimonio from './src/pages/CadastrarPatrimonio'
 import AtualizarPatrimonio from './src/pages/AtualizarPatrimonio'
+import RecuperarSenha from './src/pages/RecuperarSenha';
 import GerarRelatorio from './src/pages/GerarRelatorio'
 import BancoDeDados from './src/pages/BancoDeDados'
-import RecuperarSenha from './src/pages/RecuperarSenha';
-import Splash from './src/pages/Splash';
-import './src/config/firebase'
-import Slider from './src/components/Slider';
-import { StatusBar } from 'expo-status-bar';
+
 import { colors } from './src/globals';
+
+// import './src/config/firebase'
 
 const Stack = createNativeStackNavigator();
 
