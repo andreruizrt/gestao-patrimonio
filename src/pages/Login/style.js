@@ -1,5 +1,5 @@
 import { StyleSheet } from "react-native";
-import { colors } from "../../globals";
+import { colors, metrics } from "../../globals";
 
 const styles = StyleSheet.create({
   container: {
@@ -33,23 +33,23 @@ const styles = StyleSheet.create({
   input: {
     width: 260,
     height: 40,
-    padding: 5,
+    paddingH: 5,
     margin: 6,
     borderWidth: 1,
+    borderRadius: 10
   },
   button: {
     width: 270,
-    height: 36,
+    height: metrics.screenHeight / 15,
     marginTop: 20,
     backgroundColor: colors.submitButton,
     borderRadius: 10
   },
   buttonText: {
     flex: 1,
-    top: 10,
     color: colors.submitButtonText,
     textAlign: "center",
-    textAlignVertical: "center"
+    textAlignVertical: "center",
   },
   loginText: {
     fontSize: 18,

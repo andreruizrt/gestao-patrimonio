@@ -11,8 +11,9 @@ import {
 
 import Logo from '../../common/Logo';
 
-import styles from './style';
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+
+import styles from './style';
 
 export default class Login extends Component {
   constructor(props) {
