@@ -5,10 +5,12 @@ import {
     Text,
 } from 'react-native';
 
-import Slider from '../../components/Slider';
 import Logo from '../../common/Logo';
 
-import styles from '../Menu/style';
+import Avatar from '../../components/Avatar';
+import Slider from '../../components/Slider';
+
+import styles from './style';
 
 export default function Menu({ navigation }) {
 
@@ -17,10 +19,11 @@ export default function Menu({ navigation }) {
             <View style={styles.profileContainer}>
                 {/* <HamburgerMenu /> */}
                 {/* <MenuLateral /> */}
-                {/* <Avatar /> */}
-                {/* <AlterarAvatar /> */}
-                {/* <Text>Olá, {user.name}</Text> */}
-                <Text>Olá, Marlon</Text>
+
+                <Avatar />
+            </View>
+            <View style={{ marginTop: 50, alignSelf: 'center' }}>
+                <Text style={{ alignSelf: 'center' }}>Olá, Marlon</Text>
                 <Text>O que gostaria de fazer hoje?</Text>
             </View>
 
