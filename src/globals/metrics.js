@@ -9,6 +9,7 @@ const metrics = {
     screenWidth: width < height ? width : height,
     screenHeight: width < height ? height : width,
     tabBarHeight: 54,
+    reactNavBarHeight: (Platform.OS === 'ios') ? 17 : 0, // Não sei o do Android
     navBarHeight: (Platform.OS === 'ios') ? 64 : 54,
     statusBarHeight: (Platform.OS === 'ios') ? 20 : 0,
     baseRadius: 3,
