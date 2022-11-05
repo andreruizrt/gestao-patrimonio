@@ -13,34 +13,21 @@ import { Colaborador } from '../../service/Api/Colaborador';
 
 import styles from './style';
 
-export default function CadatrarColaborador() {
+export default function CadatrarColaborador({ navigator }) {
 
-    const [colaboradores, setColaboradores] = useState([])
+    const [nome, setNome] = useState("");
+    const [email, setEmail] = useState("");
+    const [registro, setRegistro] = useState("");
+    const [dataAdmissao, setdataAdmissao] = useState("");
 
-    async function getColaboradores() {
-        try {
-            const response = await Colaborador.index()
-
-            if (!response) {
-                console.log("Deu pau em tudo")
-            }
-
-            // const colaboradores = response.data.json()
-
-            console.log(response.data)
-
-            // setColaboradores( response.data)
-        } catch (e) {
-            console.log("ERROR: " + e)
-        }
-    }
-
-
-    async function postColaborador() {
+    async function onSubmit() {
 
         try {
-            if (nome == "" || email == "" || registro == "" || dataAdmissao == "") {
-                throw 'Algum dos valores nã foi digitado!';
+
+            if (nome.length <= 0 || email.length <= 0 || registro.length <= 0 || dataAdmissao.length <= 0) {
+                const message = 'Algum dos valores não foi digitado!'
+                Alert.alert("Erro!", message)
+                throw message;
             }
 
             const colaborador = {
@@ -66,26 +53,11 @@ export default function CadatrarColaborador() {
             // setColaboradores( response.data)
 
         } catch (error) {
-            console.log("Que isso meu filho calma: " + e )
+            console.log("Falha ao cadastrar colaborador [ERROR] " + error)
         }
 
     }
 
-
-    const [nome, setNome] = useState("");
-    const [email, setEmail] = useState("");
-    const [registro, setRegistro] = useState("");
-    const [dataAdmissao, setdataAdmissao] = useState("");
-
-    function onSubmit(userId, nome, email, registro, data_admissao) {
-        const database = getDatabase();
-        set(ref(database, 'usuario/' + userId), {
-            nome_usuario: nome,
-            email_usuario: email,
-            registro_usuario: registro,
-            dt_admissao_usuario: data_admissao
-        });
-    }
 
     // TODO: Criação paginação e navegação entre páginas de cadastro
 
@@ -147,7 +119,7 @@ export default function CadatrarColaborador() {
                     />
                     <Arrow
                         direction={"right"}
-                        onPress={() => postColaborador()}
+                        onPress={() => onSubmit()}
                     />
                 </View>
             </View >
