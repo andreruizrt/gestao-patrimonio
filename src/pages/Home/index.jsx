@@ -5,7 +5,8 @@ import {
     Text,
     Button,
     SafeAreaView,
-    FlatList
+    FlatList,
+    Alert
 } from 'react-native';
 
 import styles from './style';
@@ -49,8 +50,24 @@ const PAGES = [
     },
 ]
 
+const axios = require('axios').default;
 
 export default function Home({ navigation }) {
+    const [ users, setUsers ] = useState([]);
+    
+
+    useEffect(() => {
+        axios.get('http://localhost:5102/users/1').then((response) => {
+            if (response) {
+                setUsers(response)
+            } else {
+                Alert.alert('Erro ao comunicar com servidor')
+            }
+        }).catch((error) => {
+            console.log(error)
+            Alert.alert("Ocorreu um erro")
+        })
+    })
 
     return (
         <View style={styles.container}>

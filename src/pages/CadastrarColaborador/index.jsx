@@ -1,29 +1,91 @@
 import React, { useState } from 'react';
 
-import { View } from 'react-native';
+// import { Users } from '../../service/User';
+
+import { Alert, View } from 'react-native';
 
 import Logo from '../../common/Logo';
 import Arrow from '../../components/Arrow';
 import Input from '../../components/Input';
 
+import { Colaborador } from '../../service/Api/Colaborador';
+
+
 import styles from './style';
 
 export default function CadatrarColaborador() {
+
+    const [colaboradores, setColaboradores] = useState([])
+
+    async function getColaboradores() {
+        try {
+            const response = await Colaborador.index()
+
+            if (!response) {
+                console.log("Deu pau em tudo")
+            }
+
+            // const colaboradores = response.data.json()
+
+            console.log(response.data)
+
+            // setColaboradores( response.data)
+        } catch (e) {
+            console.log("ERROR: " + e)
+        }
+    }
+
+
+    async function postColaborador() {
+
+        try {
+            if (nome == "" || email == "" || registro == "" || dataAdmissao == "") {
+                throw 'Algum dos valores nã foi digitado!';
+            }
+
+            const colaborador = {
+                nome_colaborado: nome,
+                email: email,
+                registro: registro,
+                data_admissao: dataAdmissao
+            };
+
+            console.log(colaborador)
+
+            const response = await Colaborador.create(colaborador)
+
+
+            if (!response) {
+                console.log("Deu pau em tudo")
+            }
+
+            // const colaboradores = response.data.json()
+
+            console.log(response)
+
+            // setColaboradores( response.data)
+
+        } catch (error) {
+            console.log("Que isso meu filho calma: " + e )
+        }
+
+    }
+
 
     const [nome, setNome] = useState("");
     const [email, setEmail] = useState("");
     const [registro, setRegistro] = useState("");
     const [dataAdmissao, setdataAdmissao] = useState("");
 
-    // function onSubmit(userId, nome, email, registro, data_admissao) {
-    //     const database = getDatabase();
-    //     set(ref(database, 'usuario/' + userId), {
-    //         nome_usuario: nome,
-    //         email_usuario: email,
-    //         registro_usuario: registro,
-    //         dt_admissao_usuario: data_admissao
-    //     });
-    // }
+    function onSubmit(userId, nome, email, registro, data_admissao) {
+        const database = getDatabase();
+        set(ref(database, 'usuario/' + userId), {
+            nome_usuario: nome,
+            email_usuario: email,
+            registro_usuario: registro,
+            dt_admissao_usuario: data_admissao
+        });
+    }
 
     // TODO: Criação paginação e navegação entre páginas de cadastro
 
@@ -80,16 +142,16 @@ export default function CadatrarColaborador() {
                     backgroundColor: "white"
                 }}>
                     <Arrow
-                        onPress={() => console.log("Clicou no voltar")}
                         direction={"left"}
+                        onPress={() => console.log("Clicou no voltar")}
                     />
                     <Arrow
-                        onPress={() => console.log("Clicou no voltar")}
                         direction={"right"}
+                        onPress={() => postColaborador()}
                     />
                 </View>
             </View >
-            
+
             <View style={{ margin: 8, alignItems: "center" }}>
                 <Logo width={146} />
             </View>

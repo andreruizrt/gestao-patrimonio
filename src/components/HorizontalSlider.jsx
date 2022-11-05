@@ -1,7 +1,7 @@
-import React, { Component, useState } from 'react'
+import React, { Component } from 'react'
 import { Animated, View, StyleSheet, ScrollView, FlatList } from 'react-native'
 
-import Item from './Item';
+import Item from './Item'
 
 import { colors, metrics } from '../globals'
 
@@ -37,7 +37,22 @@ const MENU_OPTIONS = [
     },
 ]
 
-export default class Slider extends Component {
+
+const ItemListavel = ({ item }) => (
+    <View style={styles.itemContainer}>
+        <Item
+            item={item}
+            style={styles.item}
+            onPress={() => {
+                // setSelectedId(item.key)
+                // navigation.navigate(item.page)
+                console.log(item.page)
+            }}
+        />
+    </View>
+);
+
+export default class HorizontalSlider extends Component {
 
     numItems = MENU_OPTIONS.length
     itemWidth = (FIXED_BAR_WIDTH / this.numItems) - ((this.numItems - 1) * BAR_SPACE)
@@ -45,27 +60,13 @@ export default class Slider extends Component {
 
     render() {
 
-        let iconArray = []
+        const renderItemListavel = ({ item }) => (
+            <ItemListavel item={item} />
+        );
+
         let barArray = []
 
         MENU_OPTIONS.forEach((item, i) => {
-
-            console.log(item, i)
-
-            const thisImage = (
-                <View style={styles.itemContainer}>
-                    <Item
-                        item={item}
-                        onPress={() => {
-                            // setSelectedId(item.key)
-                            // navigation.navigate(item.page)
-                            console.log(item.page)
-                        }}
-                    />
-                </View>
-            )
-
-            iconArray.push(thisImage)
 
             const scrollBarVal = this.animVal.interpolate({
                 inputRange: [deviceWidth * (i - 1), deviceWidth * (i + 1)],
@@ -76,18 +77,11 @@ export default class Slider extends Component {
             const thisBar = (
                 <View
                     key={`bar${i}`}
-                    style={[
-                        styles.track,
-                        {
-                            width: this.itemWidth,
-                            marginLeft: i === 0 ? 0 : BAR_SPACE,
-                        },
-                    ]}
+                    style={[styles.track, { width: this.itemWidth, marginLeft: i === 0 ? 0 : BAR_SPACE }]}
                 >
                     <Animated.View
                         style={[
-                            styles.bar,
-                            {
+                            styles.bar, {
                                 width: this.itemWidth,
                                 transform: [
                                     { translateX: scrollBarVal },
@@ -104,10 +98,10 @@ export default class Slider extends Component {
         return (
             <View
                 style={styles.container}
-                flex={1}
             >
                 <ScrollView
-                    horizontal
+                    collapsable={false}
+                    style={styles.list}
                     showsHorizontalScrollIndicator={false}
                     scrollEventThrottle={10}
                     pagingEnabled
@@ -117,7 +111,14 @@ export default class Slider extends Component {
                         )
                     }
                 >
-                    {iconArray}
+                    <FlatList
+                        style={styles.list}
+                        data={MENU_OPTIONS}
+                        numColumns={2}
+                        renderItem={renderItemListavel}
+                        keyExtractor={item => item.key}
+                    />
+                    {/* {iconArray} */}
                 </ScrollView>
                 <View
                     style={styles.barContainer}
@@ -132,41 +133,31 @@ export default class Slider extends Component {
 
 const styles = StyleSheet.create({
     container: {
-        flex: 1,
-        alignItems: 'center',
-        justifyContent: 'center',
+        height: 310,
+
+        borderColor: 'gray',
+        borderWidth: 2,
     },
     barContainer: {
-        position: 'absolute',
-        zIndex: 2,
-        bottom: 40,
-        flexDirection: 'row',
+        width: 60,
+        borderRadius: 10,
+
     },
     itemContainer: {
-        flex: 1,
-        flexWrap: 'wrap',
-        width: metrics.screenWidth / 2,
-        height: 160
+        paddingHorizontal: 20,
+        width: metrics.screenWidth / 2 - 10,
+        height: metrics.screenHeight / 4 - 15
     },
     track: {
-        backgroundColor: colors.background,
-        overflow: 'hidden',
-        height: 20,
-        borderRadius: 10,
+
     },
     bar: {
-        backgroundColor: colors.secundary,
-        height: 20,
-        borderRadius: 10,
-        position: 'absolute',
-        left: 0,
-        top: 0,
+
     },
     item: {
-        alignItems: "center",
-        backgroundColor: colors.backgroundColor,
-        flexGrow: 1,
-        margin: 4,
-        padding: 20
+        marginVertical: 100,
+    },
+    list: {
+        maxHeight: 310,
     }
 })

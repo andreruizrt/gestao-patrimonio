@@ -9,6 +9,7 @@ import Logo from '../../common/Logo';
 
 import Avatar from '../../components/Avatar';
 import Slider from '../../components/Slider';
+import HorizontalSlider from '../../components/HorizontalSlider';
 
 import styles from './style';
 
@@ -27,14 +28,11 @@ export default function Menu({ navigation }) {
                 <Text>O que gostaria de fazer hoje?</Text>
             </View>
 
-            <View>
-                <Slider />
-            </View>
-
+            <Slider />
+            
             <View>
                 <Logo width={146} />
             </View>
-
         </View>
     );
 };
