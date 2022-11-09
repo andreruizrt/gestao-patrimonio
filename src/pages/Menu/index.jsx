@@ -9,7 +9,6 @@ import Logo from '../../common/Logo';
 
 import Avatar from '../../components/Avatar';
 import Slider from '../../components/Slider';
-import HorizontalSlider from '../../components/HorizontalSlider';
 
 import styles from './style';
 
@@ -23,14 +22,14 @@ export default function Menu({ navigation }) {
 
                 <Avatar />
             </View>
-            <View style={{ marginTop: 50, alignSelf: 'center' }}>
+            <View style={{ marginTop: 50, marginBottom: 20,  alignSelf: 'center' }}>
                 <Text style={{ alignSelf: 'center' }}>Olá, Marlon</Text>
                 <Text>O que gostaria de fazer hoje?</Text>
             </View>
 
             <Slider />
             
-            <View>
+            <View style={{ alignSelf: 'center' }}>
                 <Logo width={146} />
             </View>
         </View>

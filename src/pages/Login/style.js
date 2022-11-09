@@ -33,7 +33,7 @@ const styles = StyleSheet.create({
   input: {
     width: 260,
     height: 40,
-    paddingH: 5,
+    padding: 5,
     margin: 6,
     borderWidth: 1,
     borderRadius: 10
@@ -47,6 +47,7 @@ const styles = StyleSheet.create({
   },
   buttonText: {
     flex: 1,
+    paddingVertical: 15,
     color: colors.submitButtonText,
     textAlign: "center",
     textAlignVertical: "center",
