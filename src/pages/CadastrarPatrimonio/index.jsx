@@ -1,13 +1,16 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import {
     View,
-    ScrollView
+    ScrollView,
+    Text
 } from 'react-native';
 
+import Checkbox from 'expo-checkbox';
 import Logo from '../../common/Logo';
 import Arrow from '../../components/Arrow';
 import Input from '../../components/Input';
+import { Patrimonio } from '../../service/Api/Colaborador';
 
 import styles from './style';
 
@@ -23,6 +26,74 @@ export default function CadastrarPatrimonio() {
     const [numSerie, setNumSerie] = useState('');
     const [marca, setMarca] = useState('');
     const [modelo, setModelo] = useState('');
+    const [nomeFornecedor, setNomeFornecedor] = useState('');
+    const [cnpj_cpf, setCnpjCpf] = useState('');
+    const [setor, setSetor] = useState('');
+    const [observacoes, setObservacoes] = useState('');
+    const [componente, setComponente] = useState('');
+    const [textCheck,setTextCheck] = useState('');
+    const[isChecked,setChecked] = useState(true);
+
+    useEffect(() => {
+        if(isChecked){
+            setTextCheck('Ativado');
+        }else{
+            setTextCheck('Desativado');
+        }
+
+    }, [isChecked]);
+    async function onSubmit() {
+
+        try {
+
+            if (nome.length <= 0 || email.length <= 0 || registro.length <= 0 || dataAdmissao.length <= 0) {
+                const message = 'Algum dos valores não foi digitado!'
+                Alert.alert("Erro!", message)
+                throw message;
+            }
+
+            const patrimonio = {
+                nome_patrimonio: desc,
+                numero_patrimonio: eg,
+                codigo_barra: eg,
+                garantia:garantia,
+                data_compra:dataCompra,
+                numero_nota:numNota,
+                numero_serie:numSerie,
+                marca:marca,
+                modelo: modelo,
+                nome_fornecedor:nomeFornecedor,
+                CPF_CPNJ:cnpj_cpf,
+                identificacao_fornecedor:null,
+                telefone:null,
+                celular:null,
+                uso:isChecked,
+                setor:setor,
+                situacao:textCheck,
+                observacoes:observacoes,
+                componente:componente
+            };
+
+            console.log(patrimonio)
+
+            const response = await Patrimonio.create(patrimonio)
+
+
+            if (!response) {
+                console.log("Não obteve resposta do servidor!");
+            }
+
+            // const patrimonioes = response.data.json()
+
+            console.log(response)
+
+            // setPatrimonioes( response.data)
+
+        } catch (error) {
+            console.log("Falha ao cadastrar patrimonio [ERROR] " + error)
+        }
+
+    }
 
     return (
         <View style={{ flex: 1 }}>
@@ -103,15 +174,53 @@ export default function CadastrarPatrimonio() {
                             onChangeText={text => setNumSerie(text)}
                         />
                     </View>
-                    
-                    <View >
+                    <View style={{ flex: 1, flexDirection: "row", alignContent: "space-between" }}>                    
                         <Input
                             label={'Modelo'}
-                            width={292}
+                            width={130}
                             value={modelo}
                             onChangeText={text => setModelo(text)}
                         />
+                         <Input
+                            label={'Setor'}
+                            width={130}
+                            value={setor}
+                            onChangeText={text => setSetor(text)}
+                        />                       
                     </View>
+                    <View style={{ flex: 1, flexDirection: "row", alignContent: "space-between" }}>
+                        <Input
+                            label={'CNPJ ou CPF do Fornecedor'}
+                            width={130}
+                            value={cnpj_cpf}
+                            onChangeText={text => setCnpjCpf(text)}
+                        />                 
+                        <Input
+                            label={'Nome do fornecedor'}
+                            width={130}
+                            value={nomeFornecedor}
+                            onChangeText={text => setNomeFornecedor(text)}
+                        />     
+                    </View> 
+                    <View style={styles.section}>
+                    <Text style={styles.paragraph}>     Situação: </Text>
+                        <Checkbox style={styles.checkbox} value={isChecked} onValueChange={setChecked} />
+                        <Text style={styles.paragraph}>{textCheck}</Text>
+                    </View> 
+                    <View style={{ flex: 1, flexDirection: "row", alignContent: "space-between" }}>
+                        <Input
+                            label={'Observações'}
+                            width={160}
+                            value={observacoes}
+                            onChangeText={text => setObservacoes(text)}
+                        />                
+                        <Input
+                            label={'Componentes'}
+                            width={100}
+                            value={componente}
+                            onChangeText={text => setComponente(text)}
+                        />     
+                    </View>                                                     
 
                     <View style={{
                         marginHorizontal: 10,
@@ -125,12 +234,12 @@ export default function CadastrarPatrimonio() {
                         backgroundColor: "white"
                     }}>
                         <Arrow
-                            onPress={() => console.log("Clicou no voltar")}
                             direction={"left"}
+                            onPress={() => console.log("Clicou no voltar")}
                         />
                         <Arrow
-                            onPress={() => console.log("Clicou no voltar")}
                             direction={"right"}
+                            onPress={() => onSubmit()}
                         />
                     </View>
 
