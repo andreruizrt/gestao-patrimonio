@@ -12,6 +12,13 @@ const styles = StyleSheet.create({
     flex: 2,
     
   },
+  section: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  checkbox: {
+    margin: 8,
+  },
   menuItem: {
     flex: 2,
     width: 30,
