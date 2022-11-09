@@ -32,7 +32,7 @@ const styles = StyleSheet.create({
         backgroundColor: "white"
     },
     label: {
-        height: 14,
+        height: 20,
         position: "relative",
         top: 6,
         left: 8,

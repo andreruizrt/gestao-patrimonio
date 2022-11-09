@@ -190,13 +190,13 @@ export default function CadastrarPatrimonio() {
                     </View>
                     <View style={{ flex: 1, flexDirection: "row", alignContent: "space-between" }}>
                         <Input
-                            label={'CNPJ ou CPF do Fornecedor'}
+                            label={'CNPJ ou CPF'}
                             width={130}
                             value={cnpj_cpf}
                             onChangeText={text => setCnpjCpf(text)}
                         />                 
                         <Input
-                            label={'Nome do fornecedor'}
+                            label={'Fornecedor'}
                             width={130}
                             value={nomeFornecedor}
                             onChangeText={text => setNomeFornecedor(text)}
