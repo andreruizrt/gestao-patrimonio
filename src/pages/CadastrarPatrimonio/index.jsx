@@ -10,7 +10,7 @@ import Checkbox from 'expo-checkbox';
 import Logo from '../../common/Logo';
 import Arrow from '../../components/Arrow';
 import Input from '../../components/Input';
-import { Patrimonio } from '../../service/Api/Colaborador';
+import { Patrimonio } from '../../service/Api/Patrimonio';
 
 import styles from './style';
 
@@ -46,11 +46,6 @@ export default function CadastrarPatrimonio() {
 
         try {
 
-            if (nome.length <= 0 || email.length <= 0 || registro.length <= 0 || dataAdmissao.length <= 0) {
-                const message = 'Algum dos valores não foi digitado!'
-                Alert.alert("Erro!", message)
-                throw message;
-            }
 
             const patrimonio = {
                 nome_patrimonio: desc,
@@ -67,7 +62,7 @@ export default function CadastrarPatrimonio() {
                 identificacao_fornecedor:null,
                 telefone:null,
                 celular:null,
-                uso:isChecked,
+                uso:isChecked?1:0,
                 setor:setor,
                 situacao:textCheck,
                 observacoes:observacoes,
@@ -91,6 +86,7 @@ export default function CadastrarPatrimonio() {
 
         } catch (error) {
             console.log("Falha ao cadastrar patrimonio [ERROR] " + error)
+            console.log(error);
         }
 
     }
