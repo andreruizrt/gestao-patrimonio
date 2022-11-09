@@ -69,22 +69,22 @@ export default class Slider extends Component {
 
             iconArray.push(thisImage)
 
-            const group = () => {
-                if (i % 2 !== 0) {
-                    const anterior = i - 1
+            // const group = () => {
+            //     if (i % 2 !== 0) {
+            //         const anterior = i - 1
 
-                    return (
-                        <View style={styles.group}>
-                            {iconArray.at(anterior)}
-                            { i + 1 > iconArray.length ? <View style={styles.container}></View> : iconArray.at(i) }
-                        </View >
-                    )
-                } else {
-                    return <></>
-                }
-            }
+            //         return (
+            //             <View style={styles.group}>
+            //                 {iconArray.at(anterior)}
+            //                 { i + 1 > iconArray.length ? <View style={styles.container}></View> : iconArray.at(i) }
+            //             </View >
+            //         )
+            //     } else {
+            //         return <></>
+            //     }
+            // }
 
-            iconGroup.push(group)
+            // iconGroup.push(group)
 
             const scrollBarVal = this.animVal.interpolate({
                 inputRange: [deviceWidth * (i - 1), deviceWidth * (i + 1)],
@@ -127,8 +127,19 @@ export default class Slider extends Component {
                         )
                     }
                 >
-                    <View style={styles.itemListavel}>
-                        {iconGroup}
+                    <View style={{ flex: 1, flexDirection: 'column'}}>
+                        <View style={styles.group}>
+                            {iconArray.at(0)}
+                            {iconArray.at(1)}
+                        </View>
+                        <View style={styles.group}>
+                            {iconArray.at(2)}
+                            {iconArray.at(3)}
+                        </View>
+                    </View>
+                    <View style={styles.group}>
+                        {iconArray.at(4)}
+                        <View style={styles.itemListavel}></View>
                     </View>
                 </ScrollView>
                 <View
