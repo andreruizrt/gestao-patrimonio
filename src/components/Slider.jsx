@@ -47,10 +47,11 @@ export default class Slider extends Component {
 
         let iconArray = []
         let barArray = []
+        let iconGroup = []
 
         MENU_OPTIONS.forEach((item, i) => {
 
-            console.log(item, i)
+            console.log(i)
 
             const thisImage = (
                 <View style={styles.itemContainer}>
@@ -67,6 +68,23 @@ export default class Slider extends Component {
             )
 
             iconArray.push(thisImage)
+
+            const group = () => {
+                if (i % 2 === 0) {
+                    const proximo = i + 1
+
+                    return (
+                        <View style={styles.group}>
+                            {iconArray.at(i)}
+                            {proximo <= iconArray.length ? iconArray.at(proximo) : <View style={styles.container}></View>}
+                        </View >
+                    )
+                } else {
+                    return <></>
+                }
+            }
+
+            iconGroup.push(group)
 
             const scrollBarVal = this.animVal.interpolate({
                 inputRange: [deviceWidth * (i - 1), deviceWidth * (i + 1)],
@@ -110,10 +128,7 @@ export default class Slider extends Component {
                     }
                 >
                     <View style={styles.itemListavel}>
-                        {iconArray.slice(0, 4)}
-                    </View>
-                    <View style={styles.itemListavel}>
-                        {iconArray.at(4)}
+                        {iconGroup}
                     </View>
                 </ScrollView>
                 <View
@@ -155,5 +170,9 @@ const styles = StyleSheet.create({
     },
     list: {
         height: 310,
+    },
+    group: {
+        flex: 1,
+        flexDirection: 'row'
     }
 })
