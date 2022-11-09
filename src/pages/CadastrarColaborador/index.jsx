@@ -37,20 +37,11 @@ export default function CadatrarColaborador({ navigator }) {
                 data_admissao: dataAdmissao
             };
 
-            console.log(colaborador)
-
             const response = await Colaborador.create(colaborador)
 
-
             if (!response) {
-                console.log("Deu pau em tudo")
+                throw "Response está vazio"
             }
-
-            // const colaboradores = response.data.json()
-
-            console.log(response)
-
-            // setColaboradores( response.data)
 
         } catch (error) {
             console.log("Falha ao cadastrar colaborador [ERROR] " + error)
