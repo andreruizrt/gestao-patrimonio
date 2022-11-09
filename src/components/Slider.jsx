@@ -80,7 +80,7 @@ export default class Slider extends Component {
                         </View >
                     )
                 } else {
-                    return <br/>
+                    return <></>
                 }
             }
 
