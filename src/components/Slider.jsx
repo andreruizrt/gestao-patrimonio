@@ -70,17 +70,17 @@ export default class Slider extends Component {
             iconArray.push(thisImage)
 
             const group = () => {
-                if (i % 2 === 0) {
-                    const proximo = i + 1
+                if (i % 2 !== 0) {
+                    const anterior = i - 1
 
                     return (
                         <View style={styles.group}>
-                            {iconArray.at(i)}
-                            {proximo <= iconArray.length ? iconArray.at(proximo) : <View style={styles.container}></View>}
+                            {iconArray.at(anterior)}
+                            { i + 1 > iconArray.length ? <View style={styles.container}></View> : iconArray.at(i) }
                         </View >
                     )
                 } else {
-                    return <></>
+                    return <br/>
                 }
             }
 
