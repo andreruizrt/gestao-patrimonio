@@ -37,15 +37,14 @@ const MENU_OPTIONS = [
     },
 ]
 
-export default class Slider extends Component {
-
+export default class Slider extends Component  {
+    
     numItems = MENU_OPTIONS.length
     itemWidth = (FIXED_BAR_WIDTH / this.numItems) - ((this.numItems - 1) * BAR_SPACE)
     animVal = new Animated.Value(0)
 
     render() {
-
-        let iconArray = []
+        var iconArray = []
         let barArray = []
         let iconGroup = []
 
@@ -59,9 +58,7 @@ export default class Slider extends Component {
                         item={item}
                         style={styles.item}
                         onPress={() => {
-                            // setSelectedId(item.key)
-                            // navigation.navigate(item.page)
-                            console.log(item.page)
+                            this.props.navigation.navigate(item.page)
                         }}
                     />
                 </View>
@@ -113,6 +110,11 @@ export default class Slider extends Component {
             barArray.push(thisBar)
         })
 
+        let sq = iconArray[0];
+        let sq1 = iconArray[1];
+        let sq2 = iconArray[2];
+        let sq3 = iconArray[3];
+        let sq4 = iconArray[4];
         return (
             <>
                 <ScrollView
@@ -129,16 +131,16 @@ export default class Slider extends Component {
                 >
                     <View style={{ flex: 1, flexDirection: 'column'}}>
                         <View style={styles.group}>
-                            {iconArray.at(0)}
-                            {iconArray.at(1)}
+                            {sq}
+                            {sq1}
                         </View>
                         <View style={styles.group}>
-                            {iconArray.at(2)}
-                            {iconArray.at(3)}
+                            {sq2}
+                            {sq3}
                         </View>
                     </View>
                     <View style={styles.group}>
-                        {iconArray.at(4)}
+                        {sq4}
                         <View style={styles.itemListavel}></View>
                     </View>
                 </ScrollView>
