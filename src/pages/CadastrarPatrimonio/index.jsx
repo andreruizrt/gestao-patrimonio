@@ -15,7 +15,7 @@ import { Patrimonio } from '../../service/Api/Patrimonio';
 
 import styles from './style';
 
-export default function CadastrarPatrimonio() {
+export default function CadastrarPatrimonio({ navigation }) {
 
     const [id, setId] = useState('');
     const [eg, setEg] = useState('');
@@ -63,6 +63,7 @@ export default function CadastrarPatrimonio() {
                 numero_serie:numSerie,
                 marca:marca,
                 modelo: modelo,
+                valor:valor,
                 nome_fornecedor:nomeFornecedor,
                 CPF_CPNJ:cnpj_cpf,
                 identificacao_fornecedor:null,
@@ -82,6 +83,7 @@ export default function CadastrarPatrimonio() {
                 console.log("Não obteve resposta do servidor!");
             } else {
                 Alert.alert("Sucesso!", "Patrimônio cadastrado!")
+                navigation.navigate('Menu');
             }
 
             // const patrimonioes = response.data.json()

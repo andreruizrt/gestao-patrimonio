@@ -42,7 +42,7 @@ export default function App() {
     // return subscriber;
   }, []);
 
-  if (initializing) {
+  if (!initializing) {
     return null;
   }
 
