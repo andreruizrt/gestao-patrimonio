@@ -12,6 +12,7 @@ export default function BancoDeDados({ navigation }) {
     return (
         <View style={{ flex: 1 }}>
             <Card />
+            <Card />
             <View style={{ margin: 8, alignItems: "center" }}>
                 <Logo width={146} />
             </View>

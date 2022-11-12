@@ -10,10 +10,9 @@ import Input from '../../components/Input';
 
 import { Colaborador } from '../../service/Api/Colaborador';
 
-
 import styles from './style';
 
-export default function CadatrarColaborador({ navigation: { navigate } }) {
+export default function CadatrarColaborador({ navigator }) {
 
     const [nome, setNome] = useState("");
     const [email, setEmail] = useState("");
@@ -41,8 +40,11 @@ export default function CadatrarColaborador({ navigation: { navigate } }) {
 
             if (!response) {
                 throw "Response está vazio"
+            } else {
+                Alert.alert("Sucesso!", 'Colaborador cadastrado!')
             }
-            navigate('Menu');
+            
+
         } catch (error) {
             console.log("Falha ao cadastrar colaborador [ERROR] " + error)
         }

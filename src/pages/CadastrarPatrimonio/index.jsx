@@ -3,7 +3,8 @@ import React, { useEffect, useState } from 'react';
 import {
     View,
     ScrollView,
-    Text
+    Text,
+    Alert
 } from 'react-native';
 
 import Checkbox from 'expo-checkbox';
@@ -32,7 +33,7 @@ export default function CadastrarPatrimonio() {
     const [observacoes, setObservacoes] = useState('');
     const [componente, setComponente] = useState('');
     const [textCheck,setTextCheck] = useState('');
-    const[isChecked,setChecked] = useState(true);
+    const [isChecked,setChecked] = useState(true);
 
     useEffect(() => {
         if(isChecked){
@@ -46,6 +47,11 @@ export default function CadastrarPatrimonio() {
 
         try {
 
+            if (nome_patrimonio.length <= 0 || numero_nota.length <= 0 || eg.length <= 0 || data_compra.length <= 0) {
+                const message = 'Algum dos valores não foi digitado!'
+                Alert.alert("Erro!", message)
+                throw message;
+            }
 
             const patrimonio = {
                 nome_patrimonio: desc,
@@ -69,13 +75,13 @@ export default function CadastrarPatrimonio() {
                 componente:componente
             };
 
-            console.log(patrimonio)
-
             const response = await Patrimonio.create(patrimonio)
 
 
             if (!response) {
                 console.log("Não obteve resposta do servidor!");
+            } else {
+                Alert.alert("Sucesso!", "Patrimônio cadastrado!")
             }
 
             // const patrimonioes = response.data.json()

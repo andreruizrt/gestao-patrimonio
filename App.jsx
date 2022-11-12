@@ -20,30 +20,31 @@ import BancoDeDados from './src/pages/BancoDeDados'
 
 import { colors } from './src/globals';
 
-// import './src/config/firebase'
+import './src/config/firebase'
 
 const Stack = createNativeStackNavigator();
 
 export default function App() {
-  // const [initializing, setInitializing] = useState(true);
+  const [initializing, setInitializing] = useState(true);
+  
   const [user, setUser] = useState(true);
 
-  // function onAuthStateChanged(user) {
-  //   setUser(user);
+  function onAuthStateChanged(user) {
+    setUser(user);
 
-  //   if (initializing) {
-  //     setInitializing(false);
-  //   }
-  // }
+    if (initializing) {
+      setInitializing(false);
+    }
+  }
 
-  // useEffect(() => {
-  //   // const subscriber = auth().onAuthStateChanged(onAuthStateChanged);
-  //   // return subscriber;
-  // }, []);
+  useEffect(() => {
+    // const subscriber = auth().onAuthStateChanged(onAuthStateChanged);
+    // return subscriber;
+  }, []);
 
-  // if (initializing) {
-  //   return null;
-  // }
+  if (initializing) {
+    return null;
+  }
 
   if (!user) {
     return (

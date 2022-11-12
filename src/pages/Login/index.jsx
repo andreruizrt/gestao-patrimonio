@@ -1,11 +1,10 @@
-import React, { Component, useState } from 'react';
+import React, { Component } from 'react';
 
 import {
   View,
   Text,
   TextInput,
   TouchableOpacity,
-  Alert,
   Image
 } from 'react-native';
 
@@ -25,26 +24,26 @@ export default class Login extends Component {
     };
   }
 
-  async onLogin () {
+  async onLogin() {
     {/* TODO: chamar navigation aqui, para executar o login */ }
     const { username, password } = this.state;
-    const { setUser } = this.props;
+    const { setUser } = ths.props;
     const auth = getAuth();
+
     await signInWithEmailAndPassword(auth, username, password)
-    .then((userCredential) => {
-      // Signed in
-      const user = userCredential.user;
-      setUser(user);
-      // ...
-    })
-    .catch((error) => {
-      const errorCode = error.code;
-      const errorMessage = error.message;
-      console.error(errorCode);
-      console.log('ERRO');
-      console.error(errorMessage);
-    });
-    Alert.alert('Credentials', `${username} + ${password}`);
+      .then((userCredential) => {
+        const user = userCredential.user;
+        setUser(user);
+
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        console.error(errorCode);
+        console.log('ERRO');
+        console.error(errorMessage);
+      });
+
   }
 
   render() {
