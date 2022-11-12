@@ -85,7 +85,7 @@ export default function CadastrarPatrimonio() {
             // setPatrimonioes( response.data)
 
         } catch (error) {
-            console.log("Falha ao cadastrar patrimonio [ERROR] " + error)
+            console.log("Falha ao cadastrar patrimonio [ERROR] " + error.message)
             console.log(error);
         }
 
