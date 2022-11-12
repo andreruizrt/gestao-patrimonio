@@ -110,11 +110,6 @@ export default class Slider extends Component  {
             barArray.push(thisBar)
         })
 
-        let sq = iconArray[0];
-        let sq1 = iconArray[1];
-        let sq2 = iconArray[2];
-        let sq3 = iconArray[3];
-        let sq4 = iconArray[4];
         return (
             <>
                 <ScrollView
@@ -131,16 +126,16 @@ export default class Slider extends Component  {
                 >
                     <View style={{ flex: 1, flexDirection: 'column'}}>
                         <View style={styles.group}>
-                            {sq}
-                            {sq1}
+                            {iconArray[0]}
+                            {iconArray[1]}
                         </View>
                         <View style={styles.group}>
-                            {sq2}
-                            {sq3}
+                            {iconArray[2]}
+                            {iconArray[3]}
                         </View>
                     </View>
                     <View style={styles.group}>
-                        {sq4}
+                        {iconArray[4]}
                         <View style={styles.itemListavel}></View>
                     </View>
                 </ScrollView>
