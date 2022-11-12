@@ -47,11 +47,7 @@ export default function CadastrarPatrimonio({ navigation }) {
 
         try {
 
-            if (nome_patrimonio.length <= 0 || numero_nota.length <= 0 || eg.length <= 0 || data_compra.length <= 0) {
-                const message = 'Algum dos valores não foi digitado!'
-                Alert.alert("Erro!", message)
-                throw message;
-            }
+
 
             const patrimonio = {
                 nome_patrimonio: desc,
