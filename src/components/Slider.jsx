@@ -45,8 +45,10 @@ export default class Slider extends Component  {
 
     render() {
         var iconArray = []
-        let barArray = []
-        let iconGroup = []
+        let barArray = []   
+
+        const { navigation } = this.props;
+
 
         MENU_OPTIONS.forEach((item, i) => {
 
@@ -58,30 +60,13 @@ export default class Slider extends Component  {
                         item={item}
                         style={styles.item}
                         onPress={() => {
-                            this.props.navigation.navigate(item.page)
+                            navigation.navigate(item.page)
                         }}
                     />
                 </View>
             )
 
             iconArray.push(thisImage)
-
-            // const group = () => {
-            //     if (i % 2 !== 0) {
-            //         const anterior = i - 1
-
-            //         return (
-            //             <View style={styles.group}>
-            //                 {iconArray.at(anterior)}
-            //                 { i + 1 > iconArray.length ? <View style={styles.container}></View> : iconArray.at(i) }
-            //             </View >
-            //         )
-            //     } else {
-            //         return <></>
-            //     }
-            // }
-
-            // iconGroup.push(group)
 
             const scrollBarVal = this.animVal.interpolate({
                 inputRange: [deviceWidth * (i - 1), deviceWidth * (i + 1)],

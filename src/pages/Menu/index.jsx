@@ -27,7 +27,7 @@ export default function Menu({ navigation }) {
                 <Text>O que gostaria de fazer hoje?</Text>
             </View>
 
-            <Slider />
+            <Slider navigation={navigation}/>
             
             <View style={{ alignSelf: 'center' }}>
                 <Logo width={146} />
