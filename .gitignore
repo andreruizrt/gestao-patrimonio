@@ -12,6 +12,7 @@ web-build/
 *.log
 *.lock
 metro.config.js
+package-lock.json
 
 # macOS
 .DS_Store
