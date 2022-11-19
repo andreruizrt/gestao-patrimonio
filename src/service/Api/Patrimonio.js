@@ -1,4 +1,3 @@
-import { List } from "react-native-paper";
 import { get, post, put, destroy } from "../../config/api";
 
 export const Patrimonio = {
