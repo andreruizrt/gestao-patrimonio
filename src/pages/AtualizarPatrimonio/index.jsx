@@ -1,139 +1,255 @@
 import React, { useState } from 'react';
 
-import { View, Text, Button, ScrollView } from 'react-native';
+import {
+    View,
+    Text,
+    TextInput,
+    ScrollView,
+} from 'react-native';
 
 import Logo from '../../common/Logo';
 
-import Input from '../../components/Input';
 import Arrow from '../../components/Arrow';
 
-import styles from './style'
+import styles from './style';
+
+import { Formik } from 'formik';
+import * as Yup from "yup";
+
+const valorMinimoPreencher = 1
+const naoPreenchidoMensagem = "Valor do campo não preenchido";
+
+const validationSchema = Yup.object().shape({
+    id: Yup.string()
+        .label("id")
+        .required()
+        .min(valorMinimoPreencher, naoPreenchidoMensagem),
+    eg: Yup.string()
+        .label("eg")
+        .required()
+        .min(valorMinimoPreencher, naoPreenchidoMensagem),
+    desc: Yup.string()
+        .label("desc")
+        .required()
+        .min(valorMinimoPreencher, naoPreenchidoMensagem),
+    dataCompra: Yup.string()
+        .label("dataCompra")
+        .required()
+        .min(valorMinimoPreencher, naoPreenchidoMensagem),
+    garantia: Yup.string()
+        .label("garantia")
+        .required()
+        .min(valorMinimoPreencher, naoPreenchidoMensagem),
+    valor: Yup.string()
+        .label("valor")
+        .required()
+        .min(valorMinimoPreencher, naoPreenchidoMensagem),
+    numNota: Yup.string()
+        .label("numNota")
+        .required()
+        .min(valorMinimoPreencher, naoPreenchidoMensagem),
+    numSerie: Yup.string()
+        .label("numSerie")
+        .required()
+        .min(valorMinimoPreencher, naoPreenchidoMensagem),
+    marca: Yup.string()
+        .label("marca")
+        .required()
+        .min(valorMinimoPreencher, naoPreenchidoMensagem),
+    modelo: Yup.string()
+        .label("modelo")
+        .required()
+        .min(valorMinimoPreencher, naoPreenchidoMensagem),
+})
+
+const initalValuesAtualizarPatrimonio = {
+    id: "",
+    eg: "",
+    desc: "",
+    dataCompra: "",
+    garantia: "",
+    valor: "",
+    numNota: "",
+    numSerie: "",
+    marca: "",
+    modelo: ""
+}
+
+const MensagemErro = ({ erro }) => {
+    <View style={styles.errorContainer}>
+        <Text style={styles.errorText}>{erro}</Text>
+    </View>
+};
 
 export default function AtualizarPatrimonio() {
-    const [id, setId] = useState('');
-    const [eg, setEg] = useState('');
-    const [desc, setDesc] = useState('');
-    const [dataCompra, setDataCompra] = useState('');
-    const [garantia, setGarantia] = useState('');
-    const [valor, setValor] = useState('');
-    const [numNota, setNumNota] = useState('');
-    const [numSerie, setNumSerie] = useState('');
-    const [marca, setMarca] = useState('');
-    const [modelo, setModelo] = useState('');
+
+    function onAtualizarPatrimonioHandler(values) {
+        // TODO: Criar método de envio das informações
+    }
 
     return (
-        <View style={{ flex: 1 }}>
-            <View style={{
-                flex: 1,
-                margin: 15,
-                borderRadius: 10,
-                backgroundColor: "white",
-                alignItems: "center"
-            }}>
-                <ScrollView showsVerticalScrollIndicator={false}>
-                    <View style={{ flex: 1, flexDirection: "row", alignContent: "space-between" }}>
-                        <Input
-                            label={'ID'}
-                            width={130}
-                            value={id}
-                            disabled={true}
-                            onChangeText={text => setId(text)}
-                        />
-                        <Input
-                            label={'EG Patrimônio'}
-                            width={130}
-                            value={eg}
-                            onChangeText={text => setEg(text)}
-                        />
-                    </View>
+        <>
+            <View style={styles.cardContainer}>
+                <ScrollView
+                    style={styles.scrollContainer}
+                    showsVerticalScrollIndicator={false}
+                >
+                    <Formik
+                        initialValues={initalValuesAtualizarPatrimonio}
+                        onSubmit={(values, actions) => {
+                            onLoginHandler(values, actions);
+                        }}
+                        validationSchema={validationSchema}
+                    >
+                        {({
+                            handleChange,
+                            values,
+                            errors,
+                            touched,
+                            handleSubmit,
+                            handleBlur,
+                        }) => (
+                            <View style={{ width: 300 }}>
+                                <View style={styles.inputContainer}>
+                                    <TextInput
+                                        style={styles.input}
+                                        numberOfLines={1}
+                                        value={values.eg}
+                                        placeholder="EG"
+                                        onChangeText={handleChange("eg")}
+                                        autoCapitalize="none"
+                                        keyboardType="numeric"
+                                        onBlur={handleBlur("eg")}
+                                    />
+                                    <MensagemErro erro={touched.eg && errors.eg} />
 
-                    <View>
-                        <Input
-                            label={'Descrição do patrimônio'}
-                            width={282}
-                            value={desc}
-                            onChangeText={text => setDesc(text)}
-                        />
-                    </View>
+                                    <TextInput
+                                        style={[styles.input, styles.inputRight]}
+                                        numberOfLines={1}
+                                        value={values.desc}
+                                        placeholder="Descrição"
+                                        onChangeText={handleChange("desc")}
+                                        autoCapitalize="none"
+                                        keyboardType="default"
+                                        onBlur={handleBlur("desc")}
+                                    />
+                                    <MensagemErro erro={touched.desc && errors.desc} />
+                                </View>
 
-                    <View style={{ flex: 3, flexDirection: "row", alignContent: "space-between" }}>
-                        <Input
-                            label={'Data de compra'}
-                            width={130}
-                            value={dataCompra}
-                            onChangeText={text => setDataCompra(text)}
-                        />
-                        <Input
-                            label={'Garantia'}
-                            width={130}
-                            value={garantia}
-                            onChangeText={text => setGarantia(text)}
-                        />
-                    </View>
+                                <View style={styles.inputContainer}>
+                                    <TextInput
+                                        style={styles.input}
+                                        numberOfLines={1}
+                                        value={values.dataCompra}
+                                        placeholder="Data da compra"
+                                        onChangeText={handleChange("dataCompra")}
+                                        autoCapitalize="none"
+                                        keyboardType='default'
+                                        onBlur={handleBlur("dataCompra")}
+                                    />
+                                    <MensagemErro erro={touched.dataCompra && errors.dataCompra} />
+                                </View>
 
-                    <View style={{ flex: 2, flexDirection: "row", alignContent: "space-between" }}>
-                        <Input
-                            label={'Valor'}
-                            width={130}
-                            value={valor}
-                            onChangeText={text => setValor(text)}
-                        />
-                        <Input
-                            label={'Nª da Nota'}
-                            width={130}
-                            value={numNota}
-                            onChangeText={text => setNumNota(text)}
-                        />
-                    </View>
-                    <View style={{ flex: 2, flexDirection: "row", alignContent: "space-between" }}>
-                        <Input
-                            label={'Marca'}
-                            width={130}
-                            value={marca}
-                            onChangeText={text => setMarca(text)}
-                        />
-                        <Input
-                            label={'Nª de Serie'}
-                            width={130}
-                            value={numSerie}
-                            onChangeText={text => setNumSerie(text)}
-                        />
-                    </View>
-                    <View >
-                        <Input
-                            label={'Modelo'}
-                            width={282}
-                            value={modelo}
-                            onChangeText={text => setModelo(text)}
-                        />
-                    </View>
+                                <View style={styles.inputContainer}>
+                                    <TextInput
+                                        style={styles.input}
+                                        numberOfLines={1}
+                                        value={values.garantia}
+                                        placeholder="Garantia"
+                                        onChangeText={handleChange("garantia")}
+                                        autoCapitalize="none"
+                                        keyboardType='default'
+                                        onBlur={handleBlur("garantia")}
+                                    />
+                                    <MensagemErro erro={touched.garantia && errors.garantia} />
 
-                    <View style={{
-                        marginHorizontal: 10,
-                        paddingTop: 30,
-                        flex: 1,
-                        flexDirection: "row",
-                        alignItems: "center",
-                        justifyContent: "space-between",
-                        borderTopWidth: 1,
-                        borderColor: "#F5EFEB",
-                        backgroundColor: "white"
-                    }}>
-                        <Arrow
-                            onPress={() => console.log("Clicou no voltar")}
-                            direction={"left"}
-                        />
-                        <Arrow
-                            onPress={() => console.log("Clicou no voltar")}
-                            direction={"right"}
-                        />
-                    </View>
+                                    <TextInput
+                                        style={styles.input}
+                                        numberOfLines={1}
+                                        value={values.valor}
+                                        placeholder="Valor"
+                                        onChangeText={handleChange("valor")}
+                                        autoCapitalize="none"
+                                        keyboardType='default'
+                                        onBlur={handleBlur("valor")}
+                                    />
+                                    <MensagemErro erro={touched.valor && errors.valor} />
+                                </View>
+
+                                <View style={styles.inputContainer}>
+                                    <TextInput
+                                        style={styles.input}
+                                        numberOfLines={1}
+                                        value={values.numNota}
+                                        placeholder="Número da nota"
+                                        onChangeText={handleChange("numNota")}
+                                        autoCapitalize="none"
+                                        keyboardType="numeric"
+                                        onBlur={handleBlur("numNota")}
+                                    />
+                                    <MensagemErro erro={touched.numNota && errors.numNota} />
+                                </View>
+
+                                <View style={styles.inputContainer}>
+                                    <TextInput
+                                        style={styles.input}
+                                        numberOfLines={1}
+                                        value={values.numSerie}
+                                        placeholder="Número de série"
+                                        onChangeText={handleChange("numSerie")}
+                                        autoCapitalize="none"
+                                        keyboardType='default'
+                                        onBlur={handleBlur("numSerie")}
+                                    />
+                                    <MensagemErro erro={touched.numSerie && errors.numSerie} />
+
+                                    <TextInput
+                                        style={styles.input}
+                                        numberOfLines={1}
+                                        value={values.marca}
+                                        placeholder="Marca"
+                                        onChangeText={handleChange("marca")}
+                                        autoCapitalize="none"
+                                        keyboardType="default"
+                                        onBlur={handleBlur("marca")}
+                                    />
+                                    <MensagemErro erro={touched.marca && errors.marca} />
+                                </View>
+
+                                <View style={styles.inputContainer}>
+                                    <TextInput
+                                        style={styles.input}
+                                        numberOfLines={1}
+                                        value={values.modelo}
+                                        placeholder="Modelo"
+                                        onChangeText={handleChange("modelo")}
+                                        autoCapitalize="none"
+                                        keyboardType="default"
+                                        onBlur={handleBlur("modelo")}
+                                    />
+                                    <MensagemErro erro={touched.modelo && errors.modelo} />
+                                </View>
+
+                                <View style={styles.navContainer}>
+                                    <Arrow
+                                        onPress={() => console.log("Clicou no voltar")}
+                                        direction={"left"}
+                                    />
+                                    <Arrow
+                                        onPress={handleSubmit}
+                                        direction={"right"}
+                                    />
+                                </View>
+                            </View>
+                        )}
+                    </Formik>
                 </ScrollView>
             </View >
+
             <View style={{ margin: 8, alignItems: "center" }}>
                 <Logo width={146} />
             </View>
-        </View>
+        </>
     );
 };
 
