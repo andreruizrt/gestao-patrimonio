@@ -6,7 +6,7 @@ import {
     StyleSheet
 } from 'react-native';
 
-import { colors } from '../globals';
+import { colors, metrics } from '../globals';
 
 export default function Input({ value, width = 100, label = "", onChangeText }) {
 
@@ -29,7 +29,7 @@ const styles = StyleSheet.create({
         height: 76,
         display: "flex",
         position: "relative",
-        backgroundColor: "white"
+        backgroundColor: colors.background
     },
     label: {
         height: 20,
@@ -39,9 +39,9 @@ const styles = StyleSheet.create({
         color: "#242220"
     },
     input: {
-        height: 52,
-        padding: 10,
-        backgroundColor: "#F5EFEB",
+        height: metrics.inputHeight,
+        padding: metrics.inputPadding,
+        backgroundColor: colors.inputBackground,
         borderRadius: 12,
         zIndex: -1
     }
