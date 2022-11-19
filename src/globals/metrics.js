@@ -13,6 +13,15 @@ const metrics = {
     navBarHeight: (Platform.OS === 'ios') ? 64 : 54,
     statusBarHeight: (Platform.OS === 'ios') ? 20 : 0,
     baseRadius: 3,
+    // Mudar para valores dinamicos de acordo com a tela
+    // INPUT
+    inputSize: 100,
+    inputMargin: 5,
+    inputPadding: 10,
+    inputWidth: 100,
+    inputHeight: 52,
+    inputContainer: 30,
+    inputBorderRadius: 12,
 };
 
 export default metrics;
