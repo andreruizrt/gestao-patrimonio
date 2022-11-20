@@ -21,7 +21,7 @@ export default function CadastrarPatrimonio({ navigation,route }) {
     const [eg, setEg] = useState('');
     const [desc, setDesc] = useState('');
     const [dataCompra, setDataCompra] = useState('');
-    const [garantia, setGarantia] = useState('');
+    const [validade, setValidade] = useState('');
     const [valor, setValor] = useState('');
     const [numNota, setNumNota] = useState('');
     const [numSerie, setNumSerie] = useState('');
@@ -34,13 +34,12 @@ export default function CadastrarPatrimonio({ navigation,route }) {
     const [componente, setComponente] = useState('');
     const [textCheck,setTextCheck] = useState('');
     const [isChecked,setChecked] = useState(true);
+    const [uso,setUso] = useState(true);
     const [insert,setInsert] = useState(true);
     const [dados,setDados] =useState('');
     
     useEffect(()=>{
-        console.log(route.params.postId)
         if (route.params.postId !== undefined){
-
             setId(route.params.postId);
         }
 
@@ -51,7 +50,6 @@ export default function CadastrarPatrimonio({ navigation,route }) {
             setInsert(false);
             async function fetchMyAPI() {
                 const response = await Patrimonio.unique(id);
-                console.log(response)
                 setDados(response.data)
             }
             fetchMyAPI();
@@ -60,41 +58,76 @@ export default function CadastrarPatrimonio({ navigation,route }) {
         }
 
     },[id]);
+    useEffect(()=>{
+        if(Array.isArray(dados)){
+            for(var i;i<dados.length;i++){
+                if(dados[i]===id){
+                    setEg(dados[i].numero_patrimonio);
+                    setDesc(dados[i].nome_patrimonio)
+                    setDataCompra(dados[i].data_compra)
+                    setValidade(dados[i].garantia+"");
+                    setValor(dados[i].valor)
+                    setNumNota(dados[i].numero_nota)
+                    setMarca(dados[i].marca)
+                    setNumSerie(dados[i].numero_serie)
+                    setModelo(dados[i].modelo)
+                    setCnpjCpf(dados[i].Fornecedor?.CPF_CPNJ)
+                    setNomeFornecedor(dados[i].Fornecedor?.nome_fornecedor)
+                    setChecked(dados[i].Situacao?.uso===1?true:false)
+                    setSetor(dados[i].Situacao?.setor)
+                    setObservacoes(dados[i].Situacao?.observacoes)
+                    setComponente(dados[i].Situacao?.componente)
+                    break;
+                }
+    
+            }
+
+        }else{
+            setEg(dados.numero_patrimonio);
+            setDesc(dados.nome_patrimonio)
+            setDataCompra(dados.data_compra)
+            setValidade(dados.garantia+"");
+            setValor(dados.valor+"")
+            setNumNota(dados.numero_nota)
+            setMarca(dados.marca)
+            setNumSerie(dados.numero_serie)
+            setModelo(dados.modelo)
+            setCnpjCpf(dados.Fornecedor?.CPF_CPNJ)
+            setNomeFornecedor(dados.Fornecedor?.nome_fornecedor)
+            setChecked(dados.Situacao?.uso===1?true:false)
+            setSetor(dados.Situacao?.setor)
+            setObservacoes(dados.Situacao?.observacoes)
+            setComponente(dados.Situacao?.componente)
+        }
+
+    },[dados]);
+
     useEffect(() => {
         if(isChecked){
             setTextCheck('Ativado');
+            setUso(1);
         }else{
             setTextCheck('Desativado');
+            setUso(0);
         }
 
     }, [isChecked]);
 
-    useEffect(()=>{
-        //setId(dados[0].id);
-        setEg(dados.numero_patrimonio);
-        setDesc(dados.nome_patrimonio)
-        setDataCompra(dados.data_compra)
-        setGarantia(dados.garantia);
-        setValor(dados.valor)
-        setNumNota(dados.numero_nota)
-        setMarca(dados.marca)
-        setNumSerie(dados.numero_serie)
-        setModelo(dados.modelo)
-        setCnpjCpf(dados.Fornecedor?.CPF_CPNJ)
-        setNomeFornecedor(dados.Fornecedor?.nome_fornecedor)
-        setChecked(dados.Situacao?.uso===1?true:false)
-        setSetor(dados.Situacao?.setor)
-        setObservacoes(dados.Situacao?.observacoes)
-        setComponente(dados.Situacao?.componente)
-        console.log('Dados');
-        console.log(dados.garantia);
-    },[dados])
+    useEffect(() => {
+        if(isChecked){
+            setUso(1);
+        }else{
+            setUso(0);
+        }
+
+    }, [textCheck]);
+
 
     async function enviarResposta(response){
         if (!response) {
-            console.log("Não obteve resposta do servidor!");
+            Alert.alert('Erro',"Não obteve resposta do servidor!")
         } else {
-            Alert.alert("Sucesso!", "Patrimônio cadastrado!")
+            Alert.alert("Sucesso!",insert? "Patrimônio cadastrado!":"Patrimônio atualizado!")
             navigation.navigate('Menu');
         }
 
@@ -102,14 +135,11 @@ export default function CadastrarPatrimonio({ navigation,route }) {
     async function onSubmit() {
 
         try {
-
-
-
             const patrimonio = {
                 nome_patrimonio: desc,
                 numero_patrimonio: eg,
                 codigo_barra: eg,
-                garantia:garantia,
+                garantia:validade,
                 data_compra:dataCompra,
                 numero_nota:numNota,
                 numero_serie:numSerie,
@@ -121,13 +151,13 @@ export default function CadastrarPatrimonio({ navigation,route }) {
                 identificacao_fornecedor:null,
                 telefone:null,
                 celular:null,
-                uso:isChecked?1:0,
+                uso:uso,
                 setor:setor,
                 situacao:textCheck,
                 observacoes:observacoes,
                 componente:componente
             };
-            if(insert){
+            if(insert){          
                 const response = await Patrimonio.create(patrimonio)
                 enviarResposta(response)
             }else{
@@ -155,15 +185,8 @@ export default function CadastrarPatrimonio({ navigation,route }) {
                 <ScrollView showsVerticalScrollIndicator={false}>
                     <View style={{ flex: 1, flexDirection: "row", alignContent: "space-between" }}>
                         <Input
-                            label={'ID'}
-                            width={130}
-                            value={id}
-                            
-                            onChangeText={text => setId(text)}
-                        />
-                        <Input
                             label={'EG Patrimônio'}
-                            width={130}
+                            width={259}
                             value={eg}
                             onChangeText={text => setEg(text)}
                         />
@@ -184,21 +207,6 @@ export default function CadastrarPatrimonio({ navigation,route }) {
                             width={130}
                             value={dataCompra}
                             onChangeText={text => setDataCompra(text)}
-                        />
-                        <Input
-                            label={'Garantia'}
-                            width={130}
-                            value={garantia}
-                            onChangeText={text => setGarantia(text)}
-                        />
-                    </View>
-
-                    <View style={{ flex: 1, flexDirection: "row", alignContent: "space-between" }}>
-                        <Input
-                            label={'Valor'}
-                            width={130}
-                            value={valor}
-                            onChangeText={text => setValor(text)}
                         />
                         <Input
                             label={'Nª da Nota'}
@@ -222,6 +230,20 @@ export default function CadastrarPatrimonio({ navigation,route }) {
                             onChangeText={text => setNumSerie(text)}
                         />
                     </View>
+                    <View style={{ flex: 1, flexDirection: "row", alignContent: "space-between" }}>
+                        <Input
+                            label={'Valor'}
+                            width={130}
+                            value={valor}
+                            onChangeText={text => setValor(text)}
+                        />
+                        <Input
+                            label={'Garantia'}
+                            width={130}
+                            value={validade}
+                            onChangeText={text => setValidade(text)}
+                        />
+                    </View>                   
                     <View style={{ flex: 1, flexDirection: "row", alignContent: "space-between" }}>                    
                         <Input
                             label={'Modelo'}
