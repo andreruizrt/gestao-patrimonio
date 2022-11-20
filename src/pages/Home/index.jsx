@@ -40,6 +40,10 @@ const PAGES = [
         title: 'Atualizar Patrimônio'
     },
     {
+        name: 'ListaPatrimonio',
+        title: 'Lista Patrimônio'
+    },   
+    {
         name: 'GerarRelatorio',
         title: 'Gerar Relatório'
     },

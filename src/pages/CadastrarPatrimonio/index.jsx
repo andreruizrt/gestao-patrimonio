@@ -34,6 +34,7 @@ export default function CadastrarPatrimonio({ navigation }) {
     const [componente, setComponente] = useState('');
     const [textCheck,setTextCheck] = useState('');
     const [isChecked,setChecked] = useState(true);
+    
 
     useEffect(() => {
         if(isChecked){

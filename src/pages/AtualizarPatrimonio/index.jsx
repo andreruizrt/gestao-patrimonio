@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect} from 'react';
 
 import {
     View,
@@ -81,12 +81,31 @@ const MensagemErro = ({ erro }) => {
     </View>
 };
 
-export default function AtualizarPatrimonio() {
-
+export default function AtualizarPatrimonio({route}) {
+    const [id, setId] = useState('');
+    const [data,setData] = useState('');
+    useEffect(()=>{
+        setId(route.params.postId)
+    },[])
     function onAtualizarPatrimonioHandler(values) {
         // TODO: Criar método de envio das informações
     }
+    useEffect(()=>{
+        async function fetchMyAPI() {
+            console.log(id)
+            const response = await Patrimonio.unique(id);
+            console.log(response)
+            setData(response)
+        }
+        fetchMyAPI();
 
+    },[id])
+ 
+    useEffect(()=>{
+        console.log("To aqui xxxx")
+        console.log("XXX"+data);
+
+    },[data])
     return (
         <>
             <View style={styles.cardContainer}>

@@ -14,6 +14,7 @@ import Menu from './src/pages/Menu';
 import CadastrarColaborador from './src/pages/CadastrarColaborador'
 import CadastrarPatrimonio from './src/pages/CadastrarPatrimonio'
 import AtualizarPatrimonio from './src/pages/AtualizarPatrimonio'
+import ListaPatrimonio from './src/pages/ListaPatrimonio';  
 import RecuperarSenha from './src/pages/RecuperarSenha';
 import GerarRelatorio from './src/pages/GerarRelatorio'
 import BancoDeDados from './src/pages/BancoDeDados'
@@ -76,6 +77,7 @@ export default function App() {
           <Stack.Screen name='RecuperarSenha' component={RecuperarSenha} />
           <Stack.Screen name='CadastrarColaborador' component={CadastrarColaborador} />
           <Stack.Screen name='CadastrarPatrimonio' component={CadastrarPatrimonio} />
+          <Stack.Screen name='ListaPatrimonio' component={ListaPatrimonio} />
           <Stack.Screen name='AtualizarPatrimonio' component={AtualizarPatrimonio} />
           <Stack.Screen name='GerarRelatorio' component={GerarRelatorio} />
           <Stack.Screen name='BancoDeDados' component={BancoDeDados} />
