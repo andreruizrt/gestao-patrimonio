@@ -63,15 +63,11 @@ export default function App() {
         <Stack.Navigator>
           {/* <Stack.Screen name='Slider' component={Slider} /> */}
           <Stack.Screen
-            name='Home'
-            component={Home}
-            options={{
-              headerStyle: {
-                backgroundColor: colors.header
-              }
-            }}
+            name='Menu'
+            component={Menu}
+
           />
-          <Stack.Screen name='Menu' component={Menu} />
+          <Stack.Screen name='Home' component={Home} />
           <Stack.Screen name='Splash' component={Splash} />
           <Stack.Screen name='Login' component={Login} />
           <Stack.Screen name='RecuperarSenha' component={RecuperarSenha} />

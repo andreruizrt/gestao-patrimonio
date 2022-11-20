@@ -15,8 +15,7 @@ const ListaPatrimonio = ({ navigation }) => {
 
 );
 const actionOnRow = (id)=>{
-    console.log("valor"+id)
-    navigation.navigate('AtualizarPatrimonio',{
+    navigation.navigate('CadastrarPatrimonio',{
         postId: id
     });
 }
@@ -24,16 +23,12 @@ const actionOnRow = (id)=>{
   useEffect( () => {
     async function fetchMyAPI() {
         const response = await Patrimonio.index();
-        console.log(response.data);
         setData(response.data);
     }
     fetchMyAPI();
 
 }, []);
 
-useEffect(() => {
-
-}, data);
   return (
     <SafeAreaView style={styles.container}>
       <FlatList data={data} renderItem={renderItem} keyExtractor={item => item.id} />

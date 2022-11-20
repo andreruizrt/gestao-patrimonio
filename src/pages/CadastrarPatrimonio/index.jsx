@@ -15,7 +15,7 @@ import { Patrimonio } from '../../service/Api/Patrimonio';
 
 import styles from './style';
 
-export default function CadastrarPatrimonio({ navigation }) {
+export default function CadastrarPatrimonio({ navigation,route }) {
 
     const [id, setId] = useState('');
     const [eg, setEg] = useState('');
@@ -34,8 +34,32 @@ export default function CadastrarPatrimonio({ navigation }) {
     const [componente, setComponente] = useState('');
     const [textCheck,setTextCheck] = useState('');
     const [isChecked,setChecked] = useState(true);
+    const [insert,setInsert] = useState(true);
+    const [dados,setDados] =useState('');
     
+    useEffect(()=>{
+        console.log(route.params.postId)
+        if (route.params.postId !== undefined){
 
+            setId(route.params.postId);
+        }
+
+    },[]);
+
+    useEffect(()=>{
+        if (id !== undefined){
+            setInsert(false);
+            async function fetchMyAPI() {
+                const response = await Patrimonio.unique(id);
+                console.log(response)
+                setDados(response.data)
+            }
+            fetchMyAPI();
+        }else{
+            setInsert(true);  
+        }
+
+    },[id]);
     useEffect(() => {
         if(isChecked){
             setTextCheck('Ativado');
@@ -44,6 +68,37 @@ export default function CadastrarPatrimonio({ navigation }) {
         }
 
     }, [isChecked]);
+
+    useEffect(()=>{
+        //setId(dados[0].id);
+        setEg(dados.numero_patrimonio);
+        setDesc(dados.nome_patrimonio)
+        setDataCompra(dados.data_compra)
+        setGarantia(dados.garantia);
+        setValor(dados.valor)
+        setNumNota(dados.numero_nota)
+        setMarca(dados.marca)
+        setNumSerie(dados.numero_serie)
+        setModelo(dados.modelo)
+        setCnpjCpf(dados.Fornecedor?.CPF_CPNJ)
+        setNomeFornecedor(dados.Fornecedor?.nome_fornecedor)
+        setChecked(dados.Situacao?.uso===1?true:false)
+        setSetor(dados.Situacao?.setor)
+        setObservacoes(dados.Situacao?.observacoes)
+        setComponente(dados.Situacao?.componente)
+        console.log('Dados');
+        console.log(dados.garantia);
+    },[dados])
+
+    async function enviarResposta(response){
+        if (!response) {
+            console.log("Não obteve resposta do servidor!");
+        } else {
+            Alert.alert("Sucesso!", "Patrimônio cadastrado!")
+            navigation.navigate('Menu');
+        }
+
+    }
     async function onSubmit() {
 
         try {
@@ -72,26 +127,18 @@ export default function CadastrarPatrimonio({ navigation }) {
                 observacoes:observacoes,
                 componente:componente
             };
-
-            const response = await Patrimonio.create(patrimonio)
-
-
-            if (!response) {
-                console.log("Não obteve resposta do servidor!");
-            } else {
-                Alert.alert("Sucesso!", "Patrimônio cadastrado!")
-                navigation.navigate('Menu');
+            if(insert){
+                const response = await Patrimonio.create(patrimonio)
+                enviarResposta(response)
+            }else{
+                const response = await Patrimonio.update(patrimonio,id)
+                enviarResposta(response)
             }
 
-            // const patrimonioes = response.data.json()
-
-            console.log(response)
-
-            // setPatrimonioes( response.data)
-
         } catch (error) {
-            console.log("Falha ao cadastrar patrimonio [ERROR] " + error.message)
+            console.log("Falha ao cadastrar patrimonio [ERROR] " + error.error)
             console.log(error);
+            Alert.alert(error.error)
         }
 
     }
@@ -111,7 +158,7 @@ export default function CadastrarPatrimonio({ navigation }) {
                             label={'ID'}
                             width={130}
                             value={id}
-                            disabled={true}
+                            
                             onChangeText={text => setId(text)}
                         />
                         <Input

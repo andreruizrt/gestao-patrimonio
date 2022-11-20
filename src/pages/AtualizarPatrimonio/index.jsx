@@ -15,6 +15,7 @@ import styles from './style';
 
 import { Formik } from 'formik';
 import * as Yup from "yup";
+import { Patrimonio } from '../../service/Api/Patrimonio';
 
 const valorMinimoPreencher = 1
 const naoPreenchidoMensagem = "Valor do campo não preenchido";
@@ -92,20 +93,14 @@ export default function AtualizarPatrimonio({route}) {
     }
     useEffect(()=>{
         async function fetchMyAPI() {
-            console.log(id)
             const response = await Patrimonio.unique(id);
             console.log(response)
-            setData(response)
+            setData(response.data)
         }
         fetchMyAPI();
 
     },[id])
  
-    useEffect(()=>{
-        console.log("To aqui xxxx")
-        console.log("XXX"+data);
-
-    },[data])
     return (
         <>
             <View style={styles.cardContainer}>

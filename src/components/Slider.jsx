@@ -23,7 +23,7 @@ const MENU_OPTIONS = [
     {
         key: "Atualizar Patrimônio",
         icon: require("../../assets/icons/icon_flecha.png"),
-        page: "AtualizarPatrimonio"
+        page: "ListaPatrimonio"
     },
     {
         key: "Gerar Relatório",
