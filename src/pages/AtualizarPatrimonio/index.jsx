@@ -1,4 +1,4 @@
-import React, { useState,useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 
 import {
     View,
@@ -15,7 +15,6 @@ import styles from './style';
 
 import { Formik } from 'formik';
 import * as Yup from "yup";
-import { Patrimonio } from '../../service/Api/Patrimonio';
 
 const valorMinimoPreencher = 1
 const naoPreenchidoMensagem = "Valor do campo não preenchido";
@@ -82,25 +81,33 @@ const MensagemErro = ({ erro }) => {
     </View>
 };
 
-export default function AtualizarPatrimonio({route}) {
+export default function AtualizarPatrimonio({ route }) {
     const [id, setId] = useState('');
-    const [data,setData] = useState('');
-    useEffect(()=>{
+    const [data, setData] = useState('');
+
+    useEffect(() => {
         setId(route.params.postId)
-    },[])
+    }, [])
+
+    useEffect(() => {
+
+        async function findUnique() {
+            console.log(id)
+            const response = await Patrimonio.unique(id);
+            console.log(response)
+            setData(response)
+        }
+    }, [id])
+
+    useEffect(() => {
+        console.log(data);
+
+    }, [data])
+
     function onAtualizarPatrimonioHandler(values) {
         // TODO: Criar método de envio das informações
     }
-    useEffect(()=>{
-        async function fetchMyAPI() {
-            const response = await Patrimonio.unique(id);
-            console.log(response)
-            setData(response.data)
-        }
-        fetchMyAPI();
 
-    },[id])
- 
     return (
         <>
             <View style={styles.cardContainer}>

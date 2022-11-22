@@ -31,7 +31,7 @@ const MENU_OPTIONS = [
         page: "GerarRelatorio"
     },
     {
-        key: "Banco de dados",
+        key: "Base de dados",
         icon: require("../../assets/icons/icon_database.png"),
         page: "BancoDeDados"
     },

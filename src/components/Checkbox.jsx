@@ -3,8 +3,8 @@ import { Image, TouchableOpacity, StyleSheet } from 'react-native';
 
 import { colors } from '../globals';
 
-export default function Checkbox({ size = 5, enabled = false }) {
-    const [checked, setChecked] = useState(false);
+export default function Checkbox({ size = 5, selected = false }) {
+    const [checked, setChecked] = useState(selected);
 
     return (
         <TouchableOpacity style={{ width: "100%" }} onPress={() => setChecked(!checked)}>
@@ -13,11 +13,3 @@ export default function Checkbox({ size = 5, enabled = false }) {
         </TouchableOpacity>
     );
 }
-
-const styles = StyleSheet.create({
-    container: {
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: colors.background
-    }
-});

@@ -10,7 +10,6 @@ import Input from '../../components/Input';
 
 import { Colaborador } from '../../service/Api/Colaborador';
 
-import styles from './style';
 
 export default function CadatrarColaborador({ navigation }) {
 
@@ -109,7 +108,7 @@ export default function CadatrarColaborador({ navigation }) {
                 }}>
                     <Arrow
                         direction={"left"}
-                        onPress={() => console.log("Clicou no voltar")}
+                        onPress={() => navigation.goBack()}
                     />
                     <Arrow
                         direction={"right"}

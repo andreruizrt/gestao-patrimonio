@@ -9,8 +9,7 @@ const styles = StyleSheet.create({
     flexDirection: "column",
   },
   menuItens: {
-    flex: 2,
-    
+    flex: 2, 
   },
   section: {
     flexDirection: 'row',
