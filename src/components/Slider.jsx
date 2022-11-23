@@ -33,7 +33,7 @@ const MENU_OPTIONS = [
     {
         key: "Base de dados",
         icon: require("../../assets/icons/icon_database.png"),
-        page: "BancoDeDados"
+        page: "BaseDeDados"
     },
 ]
 
@@ -51,8 +51,6 @@ export default class Slider extends Component  {
 
 
         MENU_OPTIONS.forEach((item, i) => {
-
-            console.log(i)
 
             const thisImage = (
                 <View style={styles.itemContainer}>

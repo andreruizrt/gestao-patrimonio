@@ -12,10 +12,22 @@ import Checkbox from 'expo-checkbox';
 import Logo from '../../common/Logo';
 import Arrow from '../../components/Arrow';
 import Input from '../../components/Input';
+
 import { Patrimonio } from '../../service/Api/Patrimonio';
 
 import styles from './style';
-import { colors, metrics } from '../../globals';
+import { colors } from '../../globals';
+
+const converterFormatoData = (data) => {
+    console.log("converterFormatoData >> Data sem formatação [DATA]", data);
+    var dateFormat = new Date(data);
+
+    const ano = dateFormat.getFullYear();
+    const mes = dateFormat.getMonth().toString().length > 1 ? dateFormat.getMonth() + 1 : `0${dateFormat.getMonth() + 1}`;
+    const dia = dateFormat.getUTCDate().toString().length > 1 ? dateFormat.getUTCDate() : `0${dateFormat.getUTCDate()}`;
+
+    return `${ano}-${mes}-${dia}`;
+}
 
 export default function CadastrarPatrimonio({ navigation, route }) {
 
@@ -43,10 +55,13 @@ export default function CadastrarPatrimonio({ navigation, route }) {
     const [insert, setInsert] = useState(true);
 
     useEffect(() => {
+        const id = route.params?.postId;
 
-        if (route.params?.postId !== undefined) {
+        if (id !== undefined) {
+            console.log("CadastrarPatrimonio >> Patrimônio já cadastrado, trazendo dados para atualização [ID]", id);
             setId(route.params.postId);
         } else {
+            console.log("CadastrarPatrimonio >> Cadastrando um novo patrimônio");
             setLoading(false)
         }
 
@@ -74,26 +89,24 @@ export default function CadastrarPatrimonio({ navigation, route }) {
 
         if (Array.isArray(dados)) {
 
-            for (var i; i < dados.length; i++) {
+            for (let i = 0; i < dados.length; i++) {
+
                 if (dados[i] === id) {
                     setEg(dados[i].numero_patrimonio);
-                    setDesc(dados[i].nome_patrimonio)
-                    setDataCompra(() => {
-                        var dateFormat = new Date(dados[i].data_compra);
-                        return dateFormat.toISOString;
-                    })
+                    setDesc(dados[i].nome_patrimonio);
+                    setDataCompra(converterFormatoData(dados[i].data_compra));
                     setValidade(dados[i].garantia + "");
-                    setValor(dados[i].valor)
-                    setNumNota(dados[i].numero_nota)
-                    setMarca(dados[i].marca)
-                    setNumSerie(dados[i].numero_serie)
-                    setModelo(dados[i].modelo)
-                    setCnpjCpf(dados[i].Fornecedor?.CPF_CPNJ)
-                    setNomeFornecedor(dados[i].Fornecedor?.nome_fornecedor)
-                    setChecked(dados[i].Situacao?.uso === 1 ? true : false)
-                    setSetor(dados[i].Situacao?.setor)
-                    setObservacoes(dados[i].Situacao?.observacoes)
-                    setComponente(dados[i].Situacao?.componente)
+                    setValor(dados[i].valor);
+                    setNumNota(dados[i].numero_nota);
+                    setMarca(dados[i].marca);
+                    setNumSerie(dados[i].numero_serie);
+                    setModelo(dados[i].modelo);
+                    setCnpjCpf(dados[i].Fornecedor?.CPF_CPNJ);
+                    setNomeFornecedor(dados[i].Fornecedor?.nome_fornecedor);
+                    setChecked(dados[i].Situacao?.uso === 1 ? true : false);
+                    setSetor(dados[i].Situacao?.setor);
+                    setObservacoes(dados[i].Situacao?.observacoes);
+                    setComponente(dados[i].Situacao?.componente);
                     break;
                 }
 
@@ -101,11 +114,7 @@ export default function CadastrarPatrimonio({ navigation, route }) {
 
         } else {
             setEg(dados.numero_patrimonio);
-            setDesc(dados.nome_patrimonio)
-            setDataCompra(() => {
-                var dateFormat = new Date(dados.data_compra);
-                return dateFormat.toDateString();
-            })
+            setDesc(dados.nome_patrimonio);
             setValidade(dados.garantia + "");
             setValor(dados.valor + "")
             setNumNota(dados.numero_nota)
@@ -118,6 +127,11 @@ export default function CadastrarPatrimonio({ navigation, route }) {
             setSetor(dados.Situacao?.setor)
             setObservacoes(dados.Situacao?.observacoes)
             setComponente(dados.Situacao?.componente)
+
+            setDataCompra(() => {
+                const dataCompra = dados.data_compra;
+                setDataCompra(converterFormatoData(dataCompra));
+            });
         }
 
     }, [dados]);
@@ -136,7 +150,8 @@ export default function CadastrarPatrimonio({ navigation, route }) {
 
     async function enviarResposta(response) {
         if (!response) {
-            Alert.alert('Erro', "Não obteve resposta do servidor!")
+            Alert.alert('Erro', "Não obteve resposta do servidor!");
+            console.log("CadastrarPatrimonio >> Erro ao comunicar com o servidor [STATUS_CODE]", response.status);
         } else {
             Alert.alert("Sucesso!", insert ? "Patrimônio cadastrado!" : "Patrimônio atualizado!")
             navigation.navigate('Menu');
@@ -171,16 +186,16 @@ export default function CadastrarPatrimonio({ navigation, route }) {
             };
 
             if (insert) {
-                const response = await Patrimonio.create(patrimonio)
-                enviarResposta(response)
+                const response = await Patrimonio.create(patrimonio);
+                enviarResposta(response);
             } else {
-                const response = await Patrimonio.update(patrimonio, id)
-                enviarResposta(response)
+                const response = await Patrimonio.update(patrimonio, id);
+                enviarResposta(response);
             }
 
         } catch (error) {
-            console.log("Falha ao cadastrar patrimonio [ERROR] " + error.error)
-            Alert.alert(error.error)
+            Alert.alert("Falha!", "Falha ao cadastrar patrimônio")
+            console.log("CadastrarPatrimonio >> Falha ao cadastrar patrimônio [ERROR]", error.error.name)
         }
 
     }

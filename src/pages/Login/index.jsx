@@ -5,8 +5,11 @@ import {
   Text,
   TextInput,
   TouchableOpacity,
-  Image
+  Image,
+  Alert
 } from 'react-native';
+
+import { useNavigation } from '@react-navigation/native';
 
 import Logo from '../../common/Logo';
 
@@ -25,9 +28,7 @@ export default class Login extends Component {
   }
 
   async onLogin() {
-    {/* TODO: chamar navigation aqui, para executar o login */ }
     const { username, password } = this.state;
-    const { setUser } = ths.props;
     const auth = getAuth();
 
     await signInWithEmailAndPassword(auth, username, password)
@@ -37,13 +38,9 @@ export default class Login extends Component {
 
       })
       .catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        console.error(errorCode);
-        console.log('ERRO');
-        console.error(errorMessage);
+        Alert.alert("FALHA", "Falha ao logar com o email!");
+        console.log("Login >> Erro ao logar firebase [ERROR_CODE]", error.code, "[MESSAGE]", error.message);
       });
-
   }
 
   render() {
@@ -89,7 +86,7 @@ export default class Login extends Component {
           <Text>Esqueceu a senha?</Text>
         </TouchableOpacity>
 
-      </View>
+      </View >
     );
   }
 }

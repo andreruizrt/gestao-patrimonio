@@ -1,34 +1,30 @@
 import React, { useEffect, useState } from 'react'
-import {
-  NavigationContainer
-} from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { StatusBar } from 'expo-status-bar';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-import Splash from './src/pages/Splash';
-import Login from './src/pages/Login';
-import Home from './src/pages/Home';
 import Menu from './src/pages/Menu';
+import Login from './src/pages/Login';
 
-import CadastrarColaborador from './src/pages/CadastrarColaborador'
-import CadastrarPatrimonio from './src/pages/CadastrarPatrimonio'
-import AtualizarPatrimonio from './src/pages/AtualizarPatrimonio'
+import CadastrarColaborador from './src/pages/CadastrarColaborador';
+import CadastrarPatrimonio from './src/pages/CadastrarPatrimonio';
+import AtualizarPatrimonio from './src/pages/AtualizarPatrimonio';
 import ListaPatrimonio from './src/pages/ListaPatrimonio';
 import RecuperarSenha from './src/pages/RecuperarSenha';
-import GerarRelatorio from './src/pages/GerarRelatorio'
-import BancoDeDados from './src/pages/BancoDeDados'
+import GerarRelatorio from './src/pages/GerarRelatorio';
 
 import { colors } from './src/globals';
 
-import './src/config/firebase'
-import { StyleSheet } from 'react-native';
+import { getAuth } from "firebase/auth";
+import firebaseApp from './src/config/firebase';
+import BaseDeDados from './src/pages/BaseDeDados';
 
 const Stack = createNativeStackNavigator();
 
 export default function App() {
   const [initializing, setInitializing] = useState(true);
 
-  const [user, setUser] = useState(true);
+  const [user, setUser] = useState([]);
 
   function onAuthStateChanged(user) {
     setUser(user);
@@ -39,9 +35,13 @@ export default function App() {
   }
 
   useEffect(() => {
-    // const subscriber = auth().onAuthStateChanged(onAuthStateChanged);
-    // return subscriber;
-  }, []);
+    async () => {
+      const auth = getAuth(firebaseApp);
+      const subscriber = auth().onAuthStateChanged(onAuthStateChanged);
+      console.log(subscriber)
+      setUser(subscriber);
+    }
+  }, [user]);
 
   if (!initializing) {
     return null;
@@ -61,7 +61,6 @@ export default function App() {
       <NavigationContainer
       >
         <Stack.Navigator>
-          {/* <Stack.Screen name='Slider' component={Slider} /> */}
           <Stack.Screen
             name='Menu'
             component={Menu}
@@ -74,8 +73,8 @@ export default function App() {
             component={CadastrarColaborador}
             options={{
               title: "Cadastrar colaborador",
-              headerStyle: {
-                backgroundColor: colors.secundary,
+              yheaderStyle: {
+                backgroundColor: colors.header,
               }
             }} />
           <Stack.Screen
@@ -84,16 +83,16 @@ export default function App() {
             options={{
               title: "Cadastrar patrimônio",
               headerStyle: {
-                backgroundColor: colors.secundary,
+                backgroundColor: colors.header,
               }
             }} />
           <Stack.Screen
             name='ListaPatrimonio'
             component={ListaPatrimonio}
             options={{
-              title: "Listar patrimônios",
+              title: "Atualizar patrimônios",
               headerStyle: {
-                backgroundColor: colors.secundary,
+                backgroundColor: colors.header,
               }
             }} />
           <Stack.Screen
@@ -102,7 +101,7 @@ export default function App() {
             options={{
               title: "Atualizar patrimônios",
               headerStyle: {
-                backgroundColor: colors.secundary,
+                backgroundColor: colors.header,
               }
             }} />
 
@@ -112,16 +111,16 @@ export default function App() {
             options={{
               title: "Gerar Relatórios",
               headerStyle: {
-                backgroundColor: colors.secundary,
+                backgroundColor: colors.header,
               }
             }} />
           <Stack.Screen
-            name='BancoDeDados'
-            component={BancoDeDados}
+            name='BaseDeDados'
+            component={BaseDeDados}
             options={{
               title: "Base de dados",
               headerStyle: {
-                backgroundColor: colors.secundary,
+                backgroundColor: colors.header,
               }
             }}
           />
@@ -130,8 +129,3 @@ export default function App() {
     </>
   );
 }
-
-
-const styles = {
-
-};

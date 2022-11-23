@@ -1,13 +1,14 @@
-import { validateYupSchema } from 'formik';
 import React from 'react';
+
 import {
     View,
     Text,
     StyleSheet,
 } from 'react-native';
 
-import { colors, metrics } from '../globals';
 import Checkbox from './Checkbox';
+
+import { colors, metrics } from '../globals';
 
 const Header = (selected = false) => (
     <View style={styles.headerContainer}>
@@ -24,26 +25,33 @@ const Body = (values) => {
 
     return (
         <>
-            <View style={{ position: 'relative', left: -95 }}>
-                <Text style={{ fontSize: 13, color: 'grey' }}>Número de série</Text>
-                <Text style={{ fontSize: 13, color: 'grey' }}>{numero_serie}</Text>
+            <View style={{ padding: 5, flexDirection: 'row', alignItems: 'center' }}>
+                <Text style={{ color: 'grey', fontSize: 13, marginRight: 100 }}>Número de série</Text>
+                <View style={styles.rightTextContainer}>
+                    <Text style={{ fontSize: 13, color: 'grey' }}>{numero_serie}</Text>
+                </View>
             </View>
-            <View style={{ padding: 8, flexDirection: 'row' }}>
-                <Text style={{ color: 'grey', marginRight: 250 }}>Marca</Text>
-                <Text>{marca}</Text>
+            <View style={{ padding: 5, flexDirection: 'row', alignItems: 'center' }}>
+                <Text style={{ color: 'grey', marginRight: 150 }}>Marca</Text>
+                <View style={styles.rightTextContainer}>
+                    <Text>{marca}</Text>
+                </View>
             </View>
             <View style={{ padding: 5, flexDirection: 'row', alignItems: 'center' }}>
                 <Text style={{ color: 'grey', marginRight: 150 }}>Situação</Text>
-                <View style={[styles.iconSituacao, {
+                <View style={[styles.rightTextContainer, {
                     backgroundColor: situacao ? colors.success : colors.error,
-                    color: situacao  ? colors.success : colors.error
+                    color: situacao ? colors.success : colors.error,
+                    borderRadius: 15,
                 }]}>
                     <Text>{situacao ? "Ativo" : "Desativado"}</Text>
                 </View>
             </View>
-            <View style={{ padding: 2, flexDirection: 'row' }}>
+            <View style={{ padding: 5, flexDirection: 'row', alignItems: 'center' }}>
                 <Text style={{ color: 'grey', marginRight: 80 }}>Nome do patrimônio</Text>
-                <Text>{nome_patrimonio}</Text>
+                <View style={styles.rightTextContainer}>
+                    <Text>{nome_patrimonio}</Text>
+                </View>
             </View>
         </>
     )
@@ -65,9 +73,6 @@ export default function Card(values) {
             alignItems: "center"
         }}>
             <View style={styles.cardContainer}>
-                <Header
-                    selected={false}
-                />
                 <Body
                     values={values}
                 />
@@ -96,10 +101,9 @@ const styles = StyleSheet.create({
         flex: 1,
         flexDirection: "row",
     },
-    iconSituacao: {
-        width: 80,
-        padding: 8,
-        borderRadius: 15,
-        paddingHorizontal: 25,
+    rightTextContainer: {
+        flex: 1,
+        alignItems: "center",
+        paddingVertical: 8,
     },
 });

@@ -22,10 +22,6 @@ export default function Menu({ navigation }) {
 
                 <Avatar />
             </View>
-            <View style={{ marginTop: 50, marginBottom: 20,  alignSelf: 'center' }}>
-                <Text style={{ alignSelf: 'center' }}>Olá, Marlon</Text>
-                <Text>O que gostaria de fazer hoje?</Text>
-            </View>
 
             <Slider navigation={navigation}/>
             

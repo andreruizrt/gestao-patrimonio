@@ -24,7 +24,7 @@ export default function CadatrarColaborador({ navigation }) {
 
             if (nome.length <= 0 || email.length <= 0 || registro.length <= 0 || dataAdmissao.length <= 0) {
                 const message = 'Algum dos valores não foi digitado!'
-                Alert.alert("Erro!", message)
+                Alert.alert("Erro!", message);
                 throw message;
             }
 
@@ -35,7 +35,7 @@ export default function CadatrarColaborador({ navigation }) {
                 data_admissao: dataAdmissao
             };
 
-            const response = await Colaborador.create(colaborador)
+            const response = await Colaborador.create(colaborador);
 
             if (!response) {
                 throw "Response está vazio"
@@ -43,10 +43,11 @@ export default function CadatrarColaborador({ navigation }) {
                 Alert.alert("Sucesso!", 'Colaborador cadastrado!')
                 navigation.navigate('Menu');
             }
-            
-            
+
+
         } catch (error) {
-            console.log("Falha ao cadastrar colaborador [ERROR] " + error)
+            Alert.alert("Falha!", "Falha ao cadastrar colaborador");
+            console.log("CadastrarColaborador >> Falha ao cadastrar colaborador [ERROR] " + error);
         }
 
     }

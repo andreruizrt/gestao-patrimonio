@@ -10,8 +10,9 @@ const styles = StyleSheet.create({
     padding: 10,
   },
   profileContainer: {
+    marginBottom: 60,
     alignSelf: 'center',    
-    zIndex: 1,    
+    zIndex: 1,
   }
 });
 

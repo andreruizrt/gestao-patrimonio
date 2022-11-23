@@ -90,17 +90,17 @@ export default function AtualizarPatrimonio({ route }) {
     }, [])
 
     useEffect(() => {
-
         async function findUnique() {
-            console.log(id)
+            console.log("AtualizaPatrimonio [ID]", id);
             const response = await Patrimonio.unique(id);
-            console.log(response)
-            setData(response)
+            console.log("AtualizaPatrimonio [RESPONSE]", response);
+            setData(response);
         }
+
     }, [id])
 
     useEffect(() => {
-        console.log(data);
+        console.log("AtualizaPatrimonio [DATA]", data);
 
     }, [data])
 
@@ -253,12 +253,12 @@ export default function AtualizarPatrimonio({ route }) {
 
                                 <View style={styles.navContainer}>
                                     <Arrow
-                                        onPress={() => console.log("Clicou no voltar")}
-                                        direction={"left"}
-                                    />
-                                    <Arrow
                                         onPress={handleSubmit}
                                         direction={"right"}
+                                    />
+                                    <Arrow
+                                        onPress={() => console.log("Clicou no voltar")}
+                                        direction={"left"}
                                     />
                                 </View>
                             </View>
