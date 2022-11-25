@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
-import { Animated, View, StyleSheet, ScrollView, FlatList } from 'react-native'
+import { Animated, View, StyleSheet, ScrollView } from 'react-native'
 
 import Item from './Item';
 
-import { colors, metrics } from '../globals'
+import { metrics } from '../globals'
 
 const deviceWidth = metrics.screenWidth;
 const FIXED_BAR_WIDTH = 120
@@ -37,15 +37,15 @@ const MENU_OPTIONS = [
     },
 ]
 
-export default class Slider extends Component  {
-    
+export default class Slider extends Component {
+
     numItems = MENU_OPTIONS.length
     itemWidth = (FIXED_BAR_WIDTH / this.numItems) - ((this.numItems - 1) * BAR_SPACE)
     animVal = new Animated.Value(0)
 
     render() {
         var iconArray = []
-        let barArray = []   
+        let barArray = []
 
         const { navigation } = this.props;
 
@@ -107,7 +107,7 @@ export default class Slider extends Component  {
                         )
                     }
                 >
-                    <View style={{ flex: 1, flexDirection: 'column'}}>
+                    <View style={{ flex: 1, flexDirection: 'column' }}>
                         <View style={styles.group}>
                             {iconArray[0]}
                             {iconArray[1]}
@@ -135,12 +135,6 @@ export default class Slider extends Component  {
 
 
 const styles = StyleSheet.create({
-    container: {
-    },
-    barContainer: {
-
-
-    },
     itemContainer: {
         paddingHorizontal: 20,
         width: metrics.screenWidth / 2 - 10,

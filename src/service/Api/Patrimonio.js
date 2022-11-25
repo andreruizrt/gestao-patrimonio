@@ -6,5 +6,5 @@ export const Patrimonio = {
     create: (params) => post('/patrimonio', params),
     update: (params, id) => put('/patrimonio/' + id, params),
     updateSituacao: (params, id) => put('/patrimonio/situacao/' + id, params),
-    unique: (id) => get('/patrimonio/'+id),
+    unique: (id) => get('/patrimonio/' + id),
 }

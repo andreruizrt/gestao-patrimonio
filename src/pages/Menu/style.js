@@ -6,12 +6,12 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'column',
     alignSelf: 'center',
-    backgroundColor: 'white',
+    backgroundColor: colors.background,
     padding: 10,
   },
   profileContainer: {
     marginBottom: 60,
-    alignSelf: 'center',    
+    alignSelf: 'center',
     zIndex: 1,
   }
 });

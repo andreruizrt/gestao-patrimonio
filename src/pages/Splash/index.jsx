@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { View, TouchableOpacity } from 'react-native';
 
 import Logo from '../../common/Logo';

@@ -23,8 +23,8 @@ export default function Menu({ navigation }) {
                 <Avatar />
             </View>
 
-            <Slider navigation={navigation}/>
-            
+            <Slider navigation={navigation} />
+
             <View style={{ alignSelf: 'center' }}>
                 <Logo width={146} />
             </View>

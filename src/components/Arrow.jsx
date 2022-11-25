@@ -13,7 +13,7 @@ export default function Arrow({ onPress, direction }) {
     return (
         <TouchableOpacity onPress={onPress} style={styles.item}>
             <View style={[styles.menuItemContainer, { borderColor: direction == "left" ? "red" : "green" }]}>
-                <Image source={direction == "left" ?  require("../../assets/icons/icon_angle_left.png") : require("../../assets/icons/icon_angle_right.png")} />
+                <Image source={direction == "left" ? require("../../assets/icons/icon_angle_left.png") : require("../../assets/icons/icon_angle_right.png")} />
             </View>
         </TouchableOpacity>
     );

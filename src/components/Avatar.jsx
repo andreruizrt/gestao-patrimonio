@@ -13,7 +13,7 @@ export default function Avatar() {
     return (
         <View style={styles.container}>
             <Image style={styles.image} source={require("../../assets/icons/profile_picture_example.png")} />
-            <AlterarAvatar  />
+            <AlterarAvatar />
         </View>
     );
 }

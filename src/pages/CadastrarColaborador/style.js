@@ -10,7 +10,7 @@ const styles = StyleSheet.create({
   },
   menuItens: {
     flex: 2,
-    
+
   },
   menuItem: {
     flex: 2,

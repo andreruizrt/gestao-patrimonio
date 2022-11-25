@@ -64,6 +64,8 @@ export default function App() {
           <Stack.Screen
             name='Menu'
             component={Menu}
+
+
           />
           <Stack.Screen name='Login' component={Login} />
           <Stack.Screen name='RecuperarSenha' component={RecuperarSenha} />

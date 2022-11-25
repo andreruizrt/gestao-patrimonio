@@ -10,7 +10,6 @@ export default function RecuperarSenha({ navigation }) {
 
     return (
         <View style={{ flex: 1 }}>
-            
             <View>
                 <Text>Enviaremos um email com a recuperação da senha</Text>
             </View>
@@ -20,4 +19,3 @@ export default function RecuperarSenha({ navigation }) {
         </View>
     );
 };
-
